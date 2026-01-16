@@ -1,0 +1,297 @@
+{
+  "welcome": "Welcome to",
+  "login": "Login",
+  "logout": "Logout",
+  "AppHookline": "Start building smarter, connected customer experiences ",
+  "start-now": "Start now",
+
+  "signin-Screen": {
+    "signin": "Sign in",
+    "hey": "Hey",
+    "back": "Back",
+    "welcome": "Welcome",
+    "SigninGoogle": "Sign in with Google",
+    "or": "or",
+    "continue": "Continue",
+    "lets get": "Let’s get",
+    "started": "Started",
+    "dont": "Don’t remember your password? ",
+    "sendcode": "Send me a code",
+    "enteremail": "Enter your work email",
+    "enterPassword": "Enter your Password",
+    "workEmail": "Work Email",
+    "password": "Password"
+  },
+
+  "index": {
+    "welcome": "welcome to Index screen"
+  },
+  "not-found": {
+    "no-screen": "Scren not found",
+    "to-home-screen": "Navigate to Home screen"
+  },
+  "otp-screen": {
+    "check-email": "Check your email",
+    "email-content": "We’ve sent you a passcode. Please check your inbox at",
+    "hashedEmail": "  pra************@gmail.com.",
+    "resend-code": "Resend Code",
+    "cant-find ": "Can’t find your code? ",
+    "use-password": "Use password",
+    "back-to-signin": "Back to Sign in"
+  },
+  "dropdown": {
+    "select_an_option": "Select an option"
+  },
+  "search_input": {
+    "placeholder": "Search here"
+  },
+  "chats": {
+    "my-inbox": "My Inbox",
+    "groups": "Groups",
+    "custom-views": "Custom View",
+    "chats": "Chats",
+    "All": "All",
+    "My Inbox": "My Inbox",
+    "Unassigned": "Unassigned",
+    "Mentions": "Mentions",
+    "Bots": "Bots",
+    "add-new": "Add New",
+    "inbox-settings": "Inbox Settings",
+    "add-custom-view": "Add Custom View",
+    "flag-automation": "Flag Automation",
+    "auto-flat-settings": "Auto Flat Settings",
+    "archive-and-spam": "Archive and Spam",
+    "send":"Send"
+  },
+  "Profile-Update": {
+    "first-name": "First Name",
+    "enter-first-name": "Enter Last Name",
+    "last-name": "Last Name",
+    "enter-last-name": "Enter Last Name",
+    "email": "Email",
+    "save": "Save",
+    "profile-setting": "Profile Setting",
+    "mobile-Number":"Mobile Number"
+  },
+
+  "Heading-setting": {
+    "setting": "Setting"
+  },
+
+  "Settings": {
+    "username": "Daison",
+    "email": "Daisongonsalvaz@gmail.com",
+
+    "availability": "Availability",
+    "theme": "Theme",
+    "workspace": "Workspace",
+    "inviteMembers": "Invite Members",
+    "billing": "Billing",
+    "documentation": "Documentation",
+    "helpCenter": "Help Center",
+
+    "logout": "Logout"
+  },
+
+  "ThemeScreen": {
+    "color-Scheme": "Color Scheme",
+    "themecontent": "turn on dark mode, or let luma visually match your device setting.",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "MailSheetContent": {
+    "start-Conversation": "Start a Conversation",
+    "widget": "Widget",
+    "to": "To:",
+    "choose-receiver": "Choose a receiver",
+    "subject": "Subject:",
+    "enter-subject": "Enter Subject",
+    "body-placeholder": "Hey there..."
+},
+"card": {
+  "chat-title": "Chat",
+  "chat-description": "Communicate in real time via private or group chat channels.",
+  "projects-title": "Projects",
+  "projects-description": "Organize workflows and project details in a single streamlined space.",
+  "invoices-title": "Invoices",
+  "invoices-description": "Generate professional invoices for one-time or recurring payments.",
+  "drafts-title": "Drafts",
+  "drafts-description": "Create, edit, and refine help articles privately before publishing them live."
+},
+"helpCenter": {
+  "title": "Help Center",
+  "search-placeholder": "Ask a question",
+  "search-prompt": "Find answers to your questions",
+  "open-in-browser": "Open in browser",
+  "language": "Language",
+  "copy-link": "Copy Link",
+  "poweredBy": "Powered by",
+  "bublly": "Bublly"
+  },
+  "headerProps": {
+    "profile-Setting": "Profile Setting",
+    "theme-Setting": "Theme Setting",
+    "availability": "Availability",
+    "helpCenter": "Help Center",
+    "addNewContact": "Add New Contact"
+  },
+  "modal": {
+    "common": {
+      "cancel": "Cancel"
+    },
+    "warning": {
+      "title": "Are you sure you want to close this conversation?",
+      "confirm": "Close"
+    },
+    "danger": {
+      "title": "Are you sure you’d like to remove this message? This action is permanent and cannot be undone.",
+      "subtitle": "This action is permanent and cannot be undone.",
+      "confirm": "Delete"
+    },
+    "success": {
+      "title": "Are you sure you want to save the changes?",
+      "confirm": "Save"
+    }
+  },
+  "customSearch": {
+    "search-here": "Search here",
+    "no-results-found": "No results found"
+  },
+  "notification-Screen": {
+    "error-loading": "Error loading notifications",
+    "notification": "Notification",
+    "all-Messages": "All",
+    "unseen-Messages": "Unseen",
+
+    "mark-Read": "Mark All as Read",
+    "mute-Notifi": "Mute Notifications",
+    "un-Mute-Notifi": " Un Mute Notifications",
+    "muted-success": "You have Muted a notification",
+    "unmuted-success": "You have unMuted the notification",
+
+    "no-unread-notifications": "No unread notifications",
+    "no-notifications-yet": "No notifications yet"
+  },
+
+  "notification-settings": {
+    "screen-title": "Settings",
+    "loading-notification": "Loading notification settings...",
+    "sections": {
+      "bug-ticket": "Bug Report / Ticket Related",
+      "conversation": "Conversations / Messages",
+      "feature": "Feature Requests",
+      "integration": "Integration & Automation"
+    },
+
+    "toggles": {
+      "new-bug-ticket": "Notify when a new bug/ticket is submitted",
+      "ticket-assigned": "Notify when a ticket is assigned to a team",
+
+      "closed-reopened": "Notify when a closed ticket is reopened",
+      "team-replies": "Notify the user when a team member replies",
+
+      "feature-upvote": "Notify when someone upvotes a request",
+      "feature-request": "Notify when a user submits a feature request",
+
+      "jira-create": "Create/notify task in Jira, Trello, etc. on event",
+      "jira-event": "Create/notify task in Jira, Trello, etc. on event"
+    },
+
+    "availability-screen": {
+      "header-title": "Availability",
+
+      "online": {
+        "title": "Online",
+        "desc": "You are actively available to respond to customer requests."
+      },
+
+      "away": {
+        "title": "Away",
+        "desc": "You are temporarily unavailable but still logged in to the workspace."
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "chat": "Chat",
+    "faq": {
+      "updateBankDetails": "Where do I update my bank details for billing?",
+      "pauseAccount": "How do I pause/cancel my Flozy account?",
+      "dataDeleted": "Will the data be deleted if I did not pay for a month or will I still gain?",
+      "viewBillingHistory": "How do I view my past billing history for Flozy?"
+    },
+    "all": "All",
+   " enterYourName":"Enter your name",
+   " enterYourEmailId":"Enter your email id",
+     "addcontact": "Add Contact",
+     "enteryourname": "enter your name",
+      "enteryouremail": "enter your email"
+  },
+  "tabs":{
+    "Dashboard":"Dashboard"
+  },
+  "ticket-details": {
+    "header": "Ticket Details",
+ "input-placeholder": "Start Conversation...",
+    "ticketDetails": "Ticket Details",
+    "description": "Description",
+    "assignee": "Assignee",
+    "group": "Group",
+    "type": "Type",
+    "status": "Status",
+    "dueDate": "Due Date",
+    "priority": "Priority",
+    "url": "URL",
+    "userType": "User Type",
+    "l1": "L1",
+    "l2": "L2",
+    "l3": "L3",
+    "tag": "Tag",
+    "home": "Home",
+    "merge-similar": "Merge Similar",
+    "show-history": "Show History",
+    "close-conversation": "Close Conversation",
+    "delete-ticket": "Delete Ticket",
+    "archive-tickets": "Archive Tickets",
+    "set-as-unread": "Set as Unread",
+    "copy-link": "Copy Link",
+    "unarchive-tickets": "Unarchive Tickets",
+    "photos-and-videos": "Photos and Videos",
+    "document":"Document",
+    "camera":"Camera",
+    "later-today":"Later Today",
+    "tomorrow":"Tomorrow",
+    "next-week":"Next Week",
+    "one-week":"One Week",
+    "next-month":"Next Month",
+    "custom":"Custom",
+    "select-date-and-time":"Select Date and Time",
+    "confirm":"Confirm"
+  },
+
+  "helpCenter-card": {
+    "collections": {
+      "chats": {
+        "title": "Chats",
+        "description": "Communicate in real time via private or group chat channels."
+      },
+      "projects": {
+        "title": "Projects",
+        "description": "Organize workflows and project details in a single streamlined space."
+      },
+      "invoices": {
+        "title": "Invoices",
+        "description": "Generate professional invoices for one-time or recurring payments."
+      },
+      "drafts": {
+        "title": "Drafts",
+        "description": "Create, edit, and refine help articles privately before publishing them live."
+      }
+    }
+  }
+
+
+}
+
+

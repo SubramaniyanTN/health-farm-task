@@ -3,48 +3,45 @@
 export const lightThemeColors = {
     // Brand
     primary: '#2E6FF3',
-    primarySoft: '#E9F0FF',
-    primaryMuted: '#C0D4FB',
   
     // Text
-    textPrimary: '#33384B',
-    textSecondary: '#7D8A95',
-    textMuted: '#AAB6C3',
-    textInverse: '#FFFFFF',
+    textPrimary: '#33384B',      // Black
+    textSecondary: '#7D8A95',    // Gray 1
+    textMuted: '#AAB6C3',        // Gray 2
+    textShadow: '#C0D4FB',       // Shadow text
   
     // Backgrounds
-    background: '#F0F4FC',
-    surface: '#FFFFFF',
-    surfaceSecondary: '#FAFAFB',
-    surfaceMuted: '#F4F4F6',
+    background: '#F0F4FC',       // BG 0
+    backgroundSecondary: '#F4F4F6', // BG 1
+    surface: '#FAFAFB',          // BG 2
+    surfaceAlt: '#FAFAFC',       // Gray 4
   
-    // Borders
-    border: '#B2BCC9',
-    borderMuted: '#FAFAFC',
+    // UI
+    buttonBackground: '#E9F0FF',
   
     // Status
     danger: '#ED5E5E',
+  
+    // Fixed
+    white: '#FFFFFF',
   };
   
   export const darkThemeColors = {
     // Brand
     primary: '#2E6FF3',
-    primarySoft: '#333D4D',
-    primaryMuted: '#245BCE',
   
     // Text
-    textPrimary: '#F1F4F6',
-    textSecondary: '#AAB6C3',
-    textMuted: '#7D8A95',
-    textInverse: '#232528',
+    textPrimary: '#F1F4F6',      // Dark white
+    textSecondary: '#AAB6C3',    // Gray 2
+    textMuted: '#7D8A95',        // Gray 1
   
     // Backgrounds
-    background: '#232528',
-    surface: '#2B3037',
-    surfaceSecondary: '#333D4D',
+    background: '#232528',       // Dark BG
+    surface: '#2B3037',          // Dark FG
+    surfaceAlt: '#333D4D',       // Dark FG 2
   
-    // Borders
-    border: '#333333',
+    // UI
+    border: '#333333',           // Stroke
   
     // Status
     danger: '#E86666',

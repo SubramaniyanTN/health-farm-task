@@ -21,13 +21,6 @@ export default function Index(){
   const methods=useForm<FormValidationType>({
     resolver:zodResolver(formValidation)
   })
-  // fullName: string;
-  //   email: string;
-  //   phoneNumber: number;
-  //   password: string;
-  //   confirmPassword: string;
-  //   gender: "male" | "female";
-  //   country: string;
   const handleSubmit:SubmitHandler<FormValidationType>=(data)=>{
     console.log({data})
   }
