@@ -6,13 +6,13 @@ import {
   ScalableButton,
   ThemedText,
 } from "@/components";
-import { formValidation, FormValidationType } from "@/src";
+import { alertService, formValidation, FormValidationType } from "@/src";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { StyleSheet } from "react-native";
+import { DropdownAlertType } from "react-native-dropdownalert";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { UnistylesRuntime } from "react-native-unistyles";
 import { gender, SignUpForm } from "./utils";
 
 export default function SignUp() {
@@ -21,7 +21,12 @@ export default function SignUp() {
   });
   const handleSubmit: SubmitHandler<FormValidationType> = (data) => {
     console.log({ data });
-    UnistylesRuntime.setTheme;
+    alertService.alert?.({
+      type:DropdownAlertType.Error,
+      title:"Error",
+      message:"Something went wrong",
+      interval:1000
+    });
   };
   return (
     <SafeAreaView style={styles.container}>
