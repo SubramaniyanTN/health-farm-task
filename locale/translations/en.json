@@ -32,7 +32,15 @@
     }
   },
   "sign-in":{
-    "sign-in":"Sign in"
+    "sign-in":"Sign in",
+    "email":{
+      "label":"Email",
+      "placeholder":"Enter your email"
+    },
+    "password":{
+      "label":"Password",
+      "placeholder":"Enter your password"
+    }
   }
 }
 
