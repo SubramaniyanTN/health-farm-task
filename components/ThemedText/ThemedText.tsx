@@ -1,6 +1,6 @@
 import { TranslationKeys, useCustomTranslation } from "@/locale";
 import { StyleProp, Text, TextProps, TextStyle } from "react-native";
-import { textStyles } from "./styles";
+import { StyleSheet } from "react-native-unistyles";
 export type ThemedTextVariants = "title" | "base";
 
 type ThemedTextProps = TextProps  & {
@@ -20,3 +20,15 @@ const ThemedText = ({ label,children, variants="base",style, ...rest }: ThemedTe
 };
 
 export default ThemedText;
+
+
+const textStyles = StyleSheet.create((theme, rt) => ({
+  text: (variant: ThemedTextVariants) => {
+        return {
+          fontSize: variant === "title" ? 24 * rt.fontScale : 16 * rt.fontScale,
+          fontWeight: variant === "title" ? "bold" : "400",
+          color: theme.colors.textPrimary,
+        };
+  },
+}));
+

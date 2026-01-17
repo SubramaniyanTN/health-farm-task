@@ -25,28 +25,30 @@ export default function SignUp() {
   };
   return (
     <SafeAreaView style={styles.container}>
+    <KeyboardAwareScrollView
+      contentContainerStyle={styles.scrollView}
+    >
       <FormProvider {...methods}>
-        <KeyboardAwareScrollView
-          bottomOffset={62}
-          bounces
-          contentContainerStyle={styles.scrollView}
-        >
-          <ThemedText label="signup.sign-up" variants="title" style={styles.title} />
-          {SignUpForm.map((singleProps) =>
-            singleProps.name.includes("password") ? (
-              <PasswordInput key={singleProps.name} {...singleProps} />
-            ) : (
-              <CustomInput key={singleProps.name} {...singleProps} />
-            )
-          )}
-          <Radio label="signup.gender.label" data={gender} name="gender" />
-          <CustomCountrySelect name="country" />
-          <ScalableButton
-            onPress={methods.handleSubmit(handleSubmit)}
-            label={"Submit"}
-          />
-        </KeyboardAwareScrollView>
+        <ThemedText
+          label="signup.sign-up"
+          variants="title"
+          style={styles.title}
+        />
+        {SignUpForm.map((singleProps) =>
+          singleProps.name.toLocaleLowerCase().includes("password") ? (
+            <PasswordInput key={singleProps.name} {...singleProps} />
+          ) : (
+            <CustomInput key={singleProps.name} {...singleProps} />
+          )
+        )}
+        <Radio label="signup.gender.label" data={gender} name="gender" />
+        <CustomCountrySelect name="country" />
+        <ScalableButton
+          onPress={methods.handleSubmit(handleSubmit)}
+          label={"Submit"}
+        />
       </FormProvider>
+    </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 }
@@ -54,13 +56,13 @@ export default function SignUp() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: 10,
   },
   scrollView: {
     flex: 1,
     gap: 20,
-    padding: 10,
   },
-  title:{
-    textAlign:"center",
-  }
+  title: {
+    textAlign: "center",
+  },
 });

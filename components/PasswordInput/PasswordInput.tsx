@@ -3,8 +3,7 @@ import { ThemedSVG } from "@/ThemeSvg";
 import { ComponentProps, useState } from "react";
 import { useController } from "react-hook-form";
 import { Text, TextInput, View } from "react-native";
-import { styles } from "../CustomInput/CustomInput";
-
+import { StyleSheet } from "react-native-unistyles";
 interface PasswordInputProps extends ComponentProps<typeof TextInput> {
   name: string;
   label: TranslationKeys;
@@ -46,7 +45,7 @@ export default function PasswordInput({
     <View style={styles.wrapper}>
       {/* LABEL */}
       {label && (
-        <Text testID={`${name}-label`} style={styles.label}>
+        <Text testID={`${name}-label`} style={[styles.label]}>
           {labelText}
         </Text>
       )}
@@ -103,3 +102,45 @@ export default function PasswordInput({
     </View>
   );
 }
+
+
+const styles=StyleSheet.create((theme)=>({
+  inputContainer:{
+    width:"100%",
+    minHeight:40,
+    color:theme.colors.textPrimary,
+    backgroundColor:theme.colors.inputBackground,
+    borderRadius:16,
+    borderColor:theme.colors.inputBorder,
+    alignItems:"center",
+    padding:5
+  },
+  inputErrorBorder:{
+    borderColor:theme.colors.danger,
+    borderWidth:1
+  },
+  placeholderColor:{
+    color:theme.colors.inputPlaceholder
+  },
+  inputFocused:{
+    borderColor:theme.colors.primary,
+    borderWidth:1,
+  },
+  input:{
+  flex:1,
+  height:"100%",
+  width:"100%"
+  },
+  wrapper:{
+    gap:5
+  },
+  label:{
+    color:theme.colors.textPrimary
+  },
+  errorInput:{
+    borderColor:theme.colors.danger
+  },
+  errorText:{
+    color:theme.colors.danger
+  }
+}))
