@@ -1,6 +1,5 @@
-import { StyleSheet } from 'react-native'
-
-export const styles = StyleSheet.create({
+import { StyleSheet } from 'react-native-unistyles'
+export const styles = StyleSheet.create((theme)=>({
   base: {
     paddingVertical: 16,
     borderRadius: 50,
@@ -8,7 +7,8 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 8,
-    backgroundColor:"#000"
+    backgroundColor:theme.colors.primary,
+    ...theme.shadows.card,
   },
   black: {
     backgroundColor:"#000",
@@ -22,4 +22,4 @@ export const styles = StyleSheet.create({
   rightIcon: {
     marginLeft: 4,
   },
-})
+}))

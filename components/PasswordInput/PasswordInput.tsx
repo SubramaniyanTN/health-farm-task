@@ -109,14 +109,15 @@ const styles=StyleSheet.create((theme)=>({
     width:"100%",
     minHeight:40,
     backgroundColor:theme.colors.inputBackground,
-    borderRadius:16,
+    borderRadius:9,
     borderColor:theme.colors.inputBorder,
     alignItems:"center",
-    padding:5
+    padding:5,
+    ...theme.shadows.card,
   },
   inputErrorBorder:{
     borderColor:theme.colors.danger,
-    borderWidth:1
+    borderWidth:1,
   },
   placeholderColor:{
     color:theme.colors.inputPlaceholder

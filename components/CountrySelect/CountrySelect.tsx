@@ -63,11 +63,12 @@ const styles = StyleSheet.create((theme) => ({
     width: "100%",
     minHeight: 40,
     color: theme.colors.textPrimary,
-    borderRadius: 16,
+    borderRadius: 9,
     justifyContent: "center",
     backgroundColor: theme.colors.inputBackground,
     alignItems: "center",
     padding: 5,
+    ...theme.shadows.card,
   },
   errorContainer: {
     borderColor:theme.colors.danger,
