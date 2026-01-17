@@ -1,5 +1,6 @@
 {
   "signup":{
+    "sign-up":"Sign up",
     "fullName":{
       "label":"Full Name",
       "placeholder":"Enter your full name"
