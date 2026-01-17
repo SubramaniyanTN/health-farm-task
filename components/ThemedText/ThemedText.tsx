@@ -13,7 +13,7 @@ const ThemedText = ({ label,children, variants="base",style, ...rest }: ThemedTe
   const translation = useCustomTranslation();
   const labelText = label ? translation(label) : "";
   return (
-    <Text testID={`${label}-text`} {...rest} style={[textStyles.text(variants), style]}>
+    <Text testID={`${label}-text`} {...rest} style={[textStyles.text, style]}>
         {children ? children : labelText}
     </Text>
   );
@@ -23,12 +23,8 @@ export default ThemedText;
 
 
 const textStyles = StyleSheet.create((theme, rt) => ({
-  text: (variant: ThemedTextVariants) => {
-        return {
-          fontSize: variant === "title" ? 24 * rt.fontScale : 16 * rt.fontScale,
-          fontWeight: variant === "title" ? "bold" : "400",
-          color: theme.colors.textPrimary,
-        };
+  text: {
+    color: theme.colors.textPrimary,
   },
 }));
 
