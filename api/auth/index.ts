@@ -1,6 +1,7 @@
 import { supabase } from "@/src";
 import { SignInWithPasswordCredentials, SignUpWithPasswordCredentials } from "@supabase/supabase-js";
 import { useMutation } from "@tanstack/react-query";
+import { router } from "expo-router";
 
 export const useSignUp = () => {
     return useMutation({
@@ -11,12 +12,9 @@ export const useSignUp = () => {
             }
             return response.data
         },
-        onSuccess: (data) => {
-            console.log("On Success",data)
+        onSuccess: () => {
+            router.push("/auth/signin")
         },
-        onError: (error) => {
-            console.log("On Failure",error)
-        }
     })
 }
 
