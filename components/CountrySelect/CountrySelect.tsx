@@ -21,6 +21,7 @@ export default function CustomCountrySelect({ name }: CustomCountryPickProps) {
   const handleCountrySelect = (country: ICountry) => {
     onChange(country.name.common);
   };
+  const isError = error && error.message;
   const handleShowPicker = () => {
     setShowPicker(true);
   };
@@ -33,8 +34,8 @@ export default function CustomCountrySelect({ name }: CustomCountryPickProps) {
           error && error.message && styles.errorContainer,
         ]}
       >
-        <Pressable onPress={handleShowPicker}>
-          <Text style={styles.label} >{value ? value : "Please select a country"}</Text>
+        <Pressable style={[styles.inputContainer,]} onPress={handleShowPicker}>
+          <Text style={[styles.label,isError && styles.errorText]} >{value ? value : "Please select a country"}</Text>
         </Pressable>
       </View>
       <CountrySelect
@@ -69,6 +70,10 @@ const styles = StyleSheet.create((theme) => ({
     padding: 5,
   },
   errorContainer: {
-    borderColor: "red",
+    borderColor:theme.colors.danger,
+    borderWidth:1
   },
+  inputContainer:{
+    borderColor:theme.colors.inputBorder
+  }
 }));
