@@ -1,10 +1,14 @@
 import { TranslationKeys, useCustomTranslation } from "@/locale";
-import { StyleProp, Text, TextProps, TextStyle } from "react-native";
+import { ComponentProps } from "react";
+import { StyleProp, TextStyle } from "react-native";
+import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
+
+type AnimatedTextProps =ComponentProps<typeof Animated.Text>;
 
 export type ThemedTextVariants = "base" | "title";
 export type ThemedTextTone = "normal" | "danger";
 
-type ThemedTextProps = TextProps & {
+type ThemedTextProps = AnimatedTextProps & {
   label: TranslationKeys;
   variant?: ThemedTextVariants;
   tone?: ThemedTextTone;
@@ -29,13 +33,15 @@ export default function ThemedText({
   });
 
   return (
-    <Text
+    <Animated.Text
       {...rest}
       testID={`${label}-text`}
       style={[styles.text, style]}
+      entering={FadeInDown.duration(1000)}
+      exiting={FadeOutDown.duration(1000)}
     >
       {children ?? labelText}
-    </Text>
+    </Animated.Text>
   );
 }
 

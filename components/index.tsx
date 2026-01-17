@@ -1,3 +1,4 @@
+export { default as AnimatedView } from './AnimatedView/AnimatedView'
 export { default as CustomCountrySelect } from './CountrySelect/CountrySelect'
 export { default as CustomInput } from './CustomInput/CustomInput'
 export { default as InitialLayout } from './InitialLayout/InitialLayout'

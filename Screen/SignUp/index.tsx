@@ -1,5 +1,6 @@
 import { useSignUp } from "@/api";
 import {
+  AnimatedView,
   CustomCountrySelect,
   CustomInput,
   PasswordInput,
@@ -9,7 +10,7 @@ import {
 import { formValidation, FormValidationType, } from "@/Schema/index";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
 import { gender, SignUpForm } from "./utils";
 
@@ -33,7 +34,7 @@ export default function SignUp() {
     })
   };
   return (
-    <View style={styles.container}>
+    <AnimatedView style={styles.container}>
       <KeyboardAwareScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
         <FormProvider {...methods}>
           
@@ -52,7 +53,7 @@ export default function SignUp() {
           />
         </FormProvider>
       </KeyboardAwareScrollView>
-    </View>
+    </AnimatedView>
   );
 }
 
