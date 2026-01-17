@@ -28,7 +28,7 @@ export default function CustomRadio({ data, name, label }: CustomRadioProps) {
     <View style={styles.wrapper}>
       {/* LABEL */}
       {label && (
-        <Text style={[styles.label, isError && styles.errorText]}>
+        <Text style={[styles.label,]}>
           {labelText}
         </Text>
       )}

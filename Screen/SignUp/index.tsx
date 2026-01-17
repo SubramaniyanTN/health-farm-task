@@ -25,30 +25,29 @@ export default function SignUp() {
   };
   return (
     <SafeAreaView style={styles.container}>
-    <KeyboardAwareScrollView
-      contentContainerStyle={styles.scrollView}
-    >
-      <FormProvider {...methods}>
-        <ThemedText
-          label="signup.sign-up"
-          variants="title"
-          style={styles.title}
-        />
-        {SignUpForm.map((singleProps) =>
-          singleProps.name.toLocaleLowerCase().includes("password") ? (
-            <PasswordInput key={singleProps.name} {...singleProps} />
-          ) : (
-            <CustomInput key={singleProps.name} {...singleProps} />
-          )
-        )}
-        <Radio label="signup.gender.label" data={gender} name="gender" />
-        <CustomCountrySelect name="country" />
-        <ScalableButton
-          onPress={methods.handleSubmit(handleSubmit)}
-          label={"Submit"}
-        />
-      </FormProvider>
-    </KeyboardAwareScrollView>
+      <ThemedText
+            label="signup.sign-up"
+            variants="title"
+            style={styles.title}
+          />
+      <KeyboardAwareScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
+        <FormProvider {...methods}>
+          
+          {SignUpForm.map((singleProps) =>
+            singleProps.name.toLocaleLowerCase().includes("password") ? (
+              <PasswordInput key={singleProps.name} {...singleProps} />
+            ) : (
+              <CustomInput key={singleProps.name} {...singleProps} />
+            )
+          )}
+          <Radio label="signup.gender.label" data={gender} name="gender" />
+          <CustomCountrySelect name="country" />
+          <ScalableButton
+            onPress={methods.handleSubmit(handleSubmit)}
+            label={"Submit"}
+          />
+        </FormProvider>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 }
@@ -59,8 +58,9 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   scrollView: {
-    flex: 1,
+    flexGrow: 1, // ✅ THIS enables scrolling
     gap: 20,
+    paddingBottom: 40, // optional but recommended
   },
   title: {
     textAlign: "center",
