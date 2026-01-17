@@ -80,7 +80,6 @@ export const styles=StyleSheet.create((theme)=>({
   inputContainer:{
     width:"100%",
     minHeight:40,
-    color:theme.colors.textPrimary,
     backgroundColor:theme.colors.inputBackground,
     borderRadius:16,
     borderColor:theme.colors.inputBorder,
@@ -101,7 +100,9 @@ export const styles=StyleSheet.create((theme)=>({
   input:{
   flex:1,
   height:"100%",
-  width:"100%"
+  width:"100%",
+  color:theme.colors.textPrimary,
+
   },
   wrapper:{
     gap:5
