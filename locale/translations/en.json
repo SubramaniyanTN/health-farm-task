@@ -31,6 +31,11 @@
       "placeholder":"Please Select a country"
     }
   },
+  "welcome":{
+    "welcome":"Welcome",
+    "logo":"Logo",
+    "submit":"Submit"
+  },
   "sign-in":{
     "sign-in":"Sign in",
     "email":{
@@ -41,7 +46,8 @@
       "label":"Password",
       "placeholder":"Enter your password"
     }
-  }
+  },
+  "Submit":"Submit"
 }
 
 
