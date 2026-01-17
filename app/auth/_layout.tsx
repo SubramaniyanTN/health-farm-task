@@ -25,8 +25,9 @@ export default function AuthLayout() {
           tabBarStyle:{
             backgroundColor:"transparent"
           },
-          tabBarLabel:({focused})=>{  
-            const label = focused ? "signup.sign-up" : "sign-in.sign-in";
+          tabBarLabel:({children})=>{  
+            const label = children == "Sign Up" ? "signup.sign-up" : "sign-in.sign-in";
+            console.log(label);
             return (
               <ThemedText
               label={label}
@@ -46,7 +47,7 @@ export default function AuthLayout() {
         <AuthTopTabs.Screen
           name="signin"
           options={{
-            title:"Sign Up"
+            title:"Sign In"
           }}
         />
       </AuthTopTabs>
