@@ -24,7 +24,7 @@ export const queryClient = new QueryClient({
         alertService.alert?.({
             type:DropdownAlertType.Error,
             title:"Error",
-            message:"Something went wrong",
+            message:error.message ?? "Something went wrong",
             interval:1000
           });
         return ;
@@ -39,7 +39,7 @@ export const queryClient = new QueryClient({
           alertService.alert?.({
               type:DropdownAlertType.Error,
               title:"Error",
-              message:"Something went wrong",
+              message:error.message ?? "Something went wrong",
               interval:1000
             });
         return ;

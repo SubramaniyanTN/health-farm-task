@@ -30,6 +30,9 @@
       "label":"Select a Country",
       "placeholder":"Please Select a country"
     }
+  },
+  "sign-in":{
+    "sign-in":"Sign in"
   }
 }
 

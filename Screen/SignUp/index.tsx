@@ -1,3 +1,4 @@
+import { useSignUp } from "@/api";
 import {
   CustomCountrySelect,
   CustomInput,
@@ -6,30 +7,34 @@ import {
   ScalableButton,
   ThemedText,
 } from "@/components";
-import { alertService, formValidation, FormValidationType } from "@/src";
+import { formValidation, FormValidationType } from "@/src";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { StyleSheet } from "react-native";
-import { DropdownAlertType } from "react-native-dropdownalert";
+import { StyleSheet, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { gender, SignUpForm } from "./utils";
 
 export default function SignUp() {
+  const signUp = useSignUp();
   const methods = useForm<FormValidationType>({
     resolver: zodResolver(formValidation),
   });
   const handleSubmit: SubmitHandler<FormValidationType> = (data) => {
-    console.log({ data });
-    alertService.alert?.({
-      type:DropdownAlertType.Error,
-      title:"Error",
-      message:"Something went wrong",
-      interval:1000
-    });
+    signUp.mutate({
+      email: data.email,
+      password: data.password,
+      phone: data.phoneNumber,
+      options:{
+        data:{
+          name: data.fullName,
+          gender: data.gender,
+          country: data.country,
+        }
+      }
+    })
   };
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <ThemedText
             label="signup.sign-up"
             variants="title"
@@ -53,7 +58,7 @@ export default function SignUp() {
           />
         </FormProvider>
       </KeyboardAwareScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 
