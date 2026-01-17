@@ -31,7 +31,7 @@ export default function SignUp() {
           bounces
           contentContainerStyle={styles.scrollView}
         >
-          <ThemedText label="signup.sign-up" />
+          <ThemedText label="signup.sign-up" variants="title" style={styles.title} />
           {SignUpForm.map((singleProps) =>
             singleProps.name.includes("password") ? (
               <PasswordInput key={singleProps.name} {...singleProps} />
@@ -57,7 +57,10 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     flex: 1,
-    gap: 10,
+    gap: 20,
     padding: 10,
   },
+  title:{
+    textAlign:"center",
+  }
 });
