@@ -6,12 +6,11 @@ import {
   Radio,
   ScalableButton
 } from "@/components";
-import { formValidation, FormValidationType } from "@/src";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { StyleSheet, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
-import { gender, SignUpForm } from "./utils";
+import { formValidation, FormValidationType, gender, SignUpForm } from "./utils";
 
 export default function SignUp() {
   const signUp = useSignUp();

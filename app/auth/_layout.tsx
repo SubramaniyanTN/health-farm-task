@@ -27,7 +27,6 @@ export default function AuthLayout() {
           },
           tabBarLabel:({children})=>{  
             const label = children == "Sign Up" ? "signup.sign-up" : "sign-in.sign-in";
-            console.log(label);
             return (
               <ThemedText
               label={label}
