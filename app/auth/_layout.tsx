@@ -30,7 +30,7 @@ export default function AuthLayout() {
             return (
               <ThemedText
               label={label}
-              variants="base"
+              variant="title"
               style={{textAlign:"center"}}
             />
             )
