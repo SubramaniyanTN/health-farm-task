@@ -4,7 +4,7 @@ import { useController } from "react-hook-form";
 import {
   Text,
   TextInput,
-  View,
+  View
 } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 interface CustomInputProps extends ComponentProps<typeof TextInput> {
@@ -81,10 +81,12 @@ export const styles=StyleSheet.create((theme)=>({
     width:"100%",
     minHeight:40,
     backgroundColor:theme.colors.inputBackground,
-    borderRadius:16,
+    borderRadius:9,
     borderColor:theme.colors.inputBorder,
     alignItems:"center",
-    padding:5
+    boxShadow:"",
+    padding:5,
+    ...theme.shadows.card,
   },
   inputErrorBorder:{
     borderColor:theme.colors.danger,
