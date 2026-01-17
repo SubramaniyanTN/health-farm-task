@@ -4,8 +4,7 @@ import {
   CustomInput,
   PasswordInput,
   Radio,
-  ScalableButton,
-  ThemedText,
+  ScalableButton
 } from "@/components";
 import { formValidation, FormValidationType } from "@/src";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -35,11 +34,6 @@ export default function SignUp() {
   };
   return (
     <View style={styles.container}>
-      <ThemedText
-            label="signup.sign-up"
-            variants="title"
-            style={styles.title}
-          />
       <KeyboardAwareScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
         <FormProvider {...methods}>
           
