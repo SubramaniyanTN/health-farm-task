@@ -1,12 +1,13 @@
 
-import { StyleSheet } from "react-native";
+import { ColorName } from "@/colors/unistylesColor";
 import { SvgProps } from "react-native-svg";
+import { StyleSheet } from "react-native-unistyles";
 import { icons } from "./icons";
 
 export type ThemedSVGProps = SvgProps &
   Partial<{
-    themedStroke: string;
-    themedFill: string;
+    themedStroke: ColorName;
+    themedFill: ColorName;
   }> & {
     variants: keyof typeof icons;
   };
@@ -14,7 +15,7 @@ export type ThemedSVGProps = SvgProps &
 export const ThemedSVG = ({
   variants,
   themedFill,
-  themedStroke = "text",
+  themedStroke = "svgGray",
   ...restProps
 }: ThemedSVGProps) => {
   const Icon = icons[variants];
@@ -22,8 +23,8 @@ export const ThemedSVG = ({
     console.error(`ThemedSVG: No icon found for variant "${variants}"`);
     return null; // avoid rendering undefined
   }
-  const strokeColor =  themedStroke;
-  const fillColor =  themedFill
+  const strokeColor =  svgStyles.strokeColor(themedStroke).color;
+  const fillColor =  themedFill ? svgStyles.fillColor(themedFill).color : undefined;
   return (
     <Icon
       hitSlop={5}
@@ -35,9 +36,15 @@ export const ThemedSVG = ({
   );
 };
 
-const svgStyles=StyleSheet.create({
+const svgStyles=StyleSheet.create((theme)=>({
   icons:{
     width:16,
     height:16
   },
-})
+  strokeColor:(color:ColorName)=>({
+    color:theme.colors[color],
+  }),
+  fillColor:(color:ColorName)=>({
+    color:theme.colors[color],
+  }),
+}))

@@ -9,12 +9,12 @@ import { UnistylesRuntime } from "react-native-unistyles";
 const data= [ 
   {
     id:"male",
-    label:"male",
+    label:"Male",
     value:"male"
   },
   {
     id:"female",
-    label:"female",
+    label:"Female",
     value:"female"
   },
 ]
@@ -30,12 +30,12 @@ export default function SignUp(){
     <SafeAreaView>
     <FormProvider {...methods} >
     <ScrollView contentContainerStyle={styles.scrollView} >
-     <CustomInput name="fullName" label="Full name" />
-     <CustomInput name="email" label="Email" />
-     <CustomInput name="phoneNumber" label="Phone Number" />
-     <PasswordInput name="password" label="Password" />
-     <PasswordInput name="confirmPassword" label="Confirm Password" />
-     <Radio data={data} name="gender" />
+     <CustomInput name="fullName" label="signup.fullName.label" placeholder="signup.fullName.placeholder" />
+     <CustomInput name="email" label="signup.email.label" placeholder="signup.email.placeholder" />
+     <CustomInput name="phoneNumber" label="signup.phoneNumber.label" placeholder="signup.phoneNumber.placeholder"  />
+     <PasswordInput name="password" label="signup.password.label" placeholder="signup.password.placeholder" />
+     <PasswordInput name="confirmPassword" label="signup.confirmPassword.label" placeholder="signup.confirmPassword.placeholder" />
+     <Radio label="signup.gender.label" data={data} name="gender" />
      <CustomCountrySelect name="country" />
      <ScalableButton onPress={methods.handleSubmit(handleSubmit)} label={"Submit"}  />
     </ScrollView>

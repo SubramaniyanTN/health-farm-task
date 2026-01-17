@@ -1,14 +1,16 @@
-import React, { ComponentProps } from "react";
+import { TranslationKeys, useCustomTranslation } from "@/locale";
+import React, { ComponentProps, useState } from "react";
 import { useController } from "react-hook-form";
 import {
-  StyleSheet,
   Text,
   TextInput,
   View,
 } from "react-native";
+import { StyleSheet } from "react-native-unistyles";
 interface CustomInputProps extends ComponentProps<typeof TextInput> {
   name: string;
-  label: string;
+  label: TranslationKeys;
+  placeholder: TranslationKeys;
 }
 
 /* -----------------------------------------------------
@@ -18,6 +20,7 @@ interface CustomInputProps extends ComponentProps<typeof TextInput> {
 export default function CustomInput({
   name,
   label,
+  placeholder,
   style,
   ...rest
 }: CustomInputProps) {
@@ -25,26 +28,41 @@ export default function CustomInput({
     field: { value, onBlur, onChange },
     fieldState: { error },
   } = useController({ name });
-
+  const translation = useCustomTranslation();
+  const labelText = translation(label);
+  const placeholderText = translation(placeholder);
+  const isError = error && error.message;
+  const [isFocused, setIsFocused] = useState(false);
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+  const handleBlur = () => {
+    setIsFocused(false);
+    onBlur();
+  };
   return (
     <View style={[styles.wrapper]}>
       {/* LABEL */}
       {label && (
-        <Text testID={label} style={styles.label}>
-          {label}
+        <Text testID={`${name}-label`} style={[styles.label,]}>
+          {labelText}
         </Text>
       )}
 
       {/* INPUT WRAPPER */}
-      <View style={[styles.inputContainer, error && styles.inputErrorBorder]}>
+      <View style={[styles.inputContainer, 
+          isFocused && styles.inputFocused,
+        error && styles.inputErrorBorder]}>
         <TextInput
           {...rest}
           value={value}
           testID={`${name}-input`}
           onChangeText={onChange}
-          onBlur={onBlur}
-          placeholderTextColor={styles.placeholderColor.color}
-          style={[styles.input, style]}
+          onBlur={handleBlur}
+          onFocus={handleFocus}
+          placeholder={placeholderText}
+          placeholderTextColor={isError ? styles.errorText.color : styles.placeholderColor.color}
+          style={[styles.input,isError && styles.errorText, style]}
         />
       </View>
 
@@ -58,22 +76,27 @@ export default function CustomInput({
   );
 }
 
-export const styles=StyleSheet.create({
-  errorText:{
-    color:"red"
-  },
+export const styles=StyleSheet.create((theme)=>({
   inputContainer:{
     width:"100%",
     minHeight:40,
-    color:"#000",
-      borderColor:"#000",
-    borderWidth:1,
-    borderRadius:50,
+    color:theme.colors.textPrimary,
+    backgroundColor:theme.colors.inputBackground,
+    borderRadius:16,
+    borderColor:theme.colors.inputBorder,
     alignItems:"center",
     padding:5
   },
   inputErrorBorder:{
-    borderColor:"red"
+    borderColor:theme.colors.danger,
+    borderWidth:1
+  },
+  placeholderColor:{
+    color:theme.colors.inputPlaceholder
+  },
+  inputFocused:{
+    borderColor:theme.colors.primary,
+    borderWidth:1,
   },
   input:{
   flex:1,
@@ -84,9 +107,12 @@ export const styles=StyleSheet.create({
     gap:5
   },
   label:{
-
+    color:theme.colors.textPrimary
   },
-  placeholderColor:{
-    color: "#CBD0D6"
+  errorInput:{
+    borderColor:theme.colors.danger
+  },
+  errorText:{
+    color:theme.colors.danger
   }
-})
+}))
