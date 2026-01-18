@@ -2,6 +2,8 @@ import { useSignIn } from "@/api";
 import { CustomInput, PasswordInput, ScalableButton } from "@/components";
 import { signInValidation, SignInValidationType } from "@/Schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useGlobalSearchParams } from "expo-router";
+import { useEffect } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
@@ -9,6 +11,12 @@ import { StyleSheet } from "react-native-unistyles";
 
 export default function SignIn(){
     const signIn = useSignIn();
+    const {email}=useGlobalSearchParams<{email:string}>()
+    useEffect(() => {
+        if(email){
+            methods.setValue("email", email)
+        }
+    }, [email])
     const methods = useForm<SignInValidationType>({
       resolver: zodResolver(signInValidation)
     });
