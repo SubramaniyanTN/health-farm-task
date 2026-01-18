@@ -1,12 +1,15 @@
 import {
   combineReducers,
-  configureStore,
-  ConfigureStoreOptions,
+  configureStore
 } from '@reduxjs/toolkit';
 import { PersistConfig, persistReducer, persistStore } from 'redux-persist';
+import AuthSlice from './auth/auth';
+import HasSeenWelcomeSlice from './hasSeenWelcome/hasSeenWelcome';
 import { reduxStorage } from './mmkvStorage';
 
 const reducers = combineReducers({
+  auth: AuthSlice,
+  hasSeenWelcome: HasSeenWelcomeSlice,
 });
 
 const rootReducer = (
@@ -14,7 +17,12 @@ const rootReducer = (
   action: { type: string },
 ) => {
   if (action.type === 'RESET_ALL') {
-    state = undefined;
+    return reducers(
+      {
+        hasSeenWelcome: state?.hasSeenWelcome,
+      } as ReturnType<typeof reducers>,
+      action,
+    );
   }
   return reducers(state, action);
 };
@@ -23,33 +31,16 @@ const persistConfig: PersistConfig<ReturnType<typeof rootReducer>> = {
   key: 'root',
   storage: reduxStorage,
   blacklist: [
-    // "ForceUpdateReducer"
-    "ConfirmationModalReducer",
-    "BottomSheetReducer",
-    "ChatReducer",
-    "MessageReducer",
   ],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-
-const createEnhancers: ConfigureStoreOptions['enhancers'] = (
-  getDefaultEnhancers,
-) => {
-  if (__DEV__) {
-    const reactotron = require('../ReactotronConfig').default;
-    return getDefaultEnhancers().concat(reactotron.createEnhancer());
-  } else {
-    return getDefaultEnhancers();
-  }
-};
 
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) => {
     return getDefaultMiddleware({ serializableCheck: false });
   },
-  enhancers: createEnhancers,
 });
 
 export const persistor = persistStore(store);
