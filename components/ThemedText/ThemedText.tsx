@@ -9,7 +9,7 @@ export type ThemedTextVariants = "base" | "title";
 export type ThemedTextTone = "normal" | "danger";
 
 type ThemedTextProps = AnimatedTextProps & {
-  label: TranslationKeys;
+  label?: TranslationKeys;
   variant?: ThemedTextVariants;
   tone?: ThemedTextTone;
   style?: StyleProp<TextStyle>;

@@ -1,3 +1,3 @@
 import { mergeQueryKeys } from "@barehera/query-key-factory";
-
-export const queries=mergeQueryKeys({})
+import { chatKeys } from "./chat/query";
+export const queries=mergeQueryKeys({chatKeys})
