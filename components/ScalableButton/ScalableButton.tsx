@@ -55,7 +55,6 @@ function ScalableButton({
   const translation=useCustomTranslation()
   const labelText = label ? translation(label) : "";
   const isDisabled = props.disabled || disabled;
-  console.log({isDisabled,label})
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
   }));

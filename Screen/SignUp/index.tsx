@@ -5,10 +5,12 @@ import {
   CustomInput,
   PasswordInput,
   Radio,
-  ScalableButton
+  ScalableButton,
+  ThemedText
 } from "@/components";
 import { formValidation, FormValidationType, } from "@/Schema/index";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { router } from "expo-router";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { StyleSheet } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
@@ -33,6 +35,9 @@ export default function SignUp() {
       }
     })
   };
+  const handleNavigateToOtpVerify = () => {
+    router.push(`/otpverify`)
+  }
   return (
     <AnimatedView style={styles.container}>
       <KeyboardAwareScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
@@ -52,6 +57,7 @@ export default function SignUp() {
             label={"Submit"}
             disabled={signUp.isPending}
           />
+          <ThemedText style={styles.otpVerifyText} onPress={handleNavigateToOtpVerify} label="signup.already-received-otp.label" variant="base" tone="normal" />
         </FormProvider>
       </KeyboardAwareScrollView>
     </AnimatedView>
@@ -71,4 +77,8 @@ const styles = StyleSheet.create({
   title: {
     textAlign: "center",
   },
+  otpVerifyText:{
+    textDecorationLine:"underline",
+    textAlign:"center",
+  }
 });

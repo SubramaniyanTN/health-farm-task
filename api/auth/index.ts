@@ -1,7 +1,8 @@
-import { supabase } from "@/src";
-import { SignInWithPasswordCredentials, SignUpWithPasswordCredentials } from "@supabase/supabase-js";
+import { alertService, supabase } from "@/src";
+import { SignInWithPasswordCredentials, SignUpWithPasswordCredentials, VerifyOtpParams } from "@supabase/supabase-js";
 import { useMutation } from "@tanstack/react-query";
 import { router } from "expo-router";
+import { DropdownAlertType } from "react-native-dropdownalert";
 
 export const useSignUp = () => {
     return useMutation({
@@ -12,8 +13,15 @@ export const useSignUp = () => {
             }
             return response.data
         },
-        onSuccess: () => {
-            router.push("/auth/signin")
+        onSuccess: (data) => {
+            console.log("On Success",data)
+            alertService.alert?.({
+                type:DropdownAlertType.Success,
+                title:"Success",
+                message:"Check your email for verification",
+                interval:1000
+              });
+            router.push(`/otpverify?email=${data.user?.email}`)
         },
     })
 }
@@ -29,6 +37,30 @@ export const useSignIn = () => {
         },
         onSuccess: (data) => {
             console.log("On Success",data)
+        },
+        onError: (error) => {
+            console.log("On Failure",error)
+        }
+    })
+}
+
+export const useOtpVerify = () => {
+    return useMutation({
+        mutationFn:async (data: VerifyOtpParams) => {
+            const response= await supabase.auth.verifyOtp(data)
+            if(response.error){
+                throw new Error(response.error.message)
+            }
+            return response.data
+        },
+        onSuccess: (data) => {
+            alertService.alert?.({
+                type:DropdownAlertType.Success,
+                title:"Success",
+                message:"Check your email for verification",
+                interval:1000
+              });
+              router.push(`/auth/signin?email=${data.user?.email}`)
         },
         onError: (error) => {
             console.log("On Failure",error)

@@ -1,4 +1,7 @@
 {
+  "otpverify":{
+    "header":"OTP Verify"
+  },
   "signup":{
     "sign-up":"Sign up",
     "fullName":{
@@ -8,6 +11,10 @@
     "email":{
       "label":"Email",
       "placeholder":"Enter your email"
+    },
+    "otp":{
+      "label":"OTP",
+      "placeholder":"Enter OTP"
     },
     "phoneNumber":{
       "label":"Phone Number",
@@ -29,6 +36,9 @@
     "country":{
       "label":"Select a Country",
       "placeholder":"Please Select a country"
+    },
+    "already-received-otp":{
+      "label":"Already received OTP ! OTP Verify ?"
     }
   },
   "welcome":{
