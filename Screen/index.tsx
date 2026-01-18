@@ -1,3 +1,4 @@
+export { default as Chat } from './Chat';
 export { default as Dashboard } from './Dashboard/Dashboard';
 export { default as OtpVerifyScreen } from './OtpVerifyScreen';
 export { default as SignIn } from './SignIn';
