@@ -32,9 +32,10 @@
     }
   },
   "welcome":{
-    "welcome":"Welcome",
+    "welcome":"Welcome to Integfarms My Health School",
     "logo":"Logo",
-    "submit":"Submit"
+    "submit":"Submit",
+    "description":"A healthier, medicine-free life starts here."
   },
   "sign-in":{
     "sign-in":"Sign in",
