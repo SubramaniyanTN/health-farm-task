@@ -54,7 +54,8 @@ function ScalableButton({
   const [disabled, setDisabled] = useState(false);
   const translation=useCustomTranslation()
   const labelText = label ? translation(label) : "";
-
+  const isDisabled = props.disabled || disabled;
+  console.log({isDisabled,label})
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
   }));
@@ -94,9 +95,9 @@ function ScalableButton({
   return (
     <AnimatedPressable
       {...props}
-      disabled={props.disabled || disabled}
+      disabled={isDisabled}
       testID={`${label}-button`}
-      style={[styles.base,animatedStyle, shakeAnimatedStyle, props.style]}
+      style={[styles.base,animatedStyle, shakeAnimatedStyle,isDisabled && {opacity:0.6} , props.style]}
       onPress={handlePress}
     >
       {/* LEFT ICON */}

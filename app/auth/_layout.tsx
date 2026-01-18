@@ -37,18 +37,19 @@ export default function AuthLayout() {
           }
         }}
         >
+          <AuthTopTabs.Screen
+          name="signin"
+          options={{
+            title:"Sign In"
+          }}
+        />
         <AuthTopTabs.Screen
           name="index"
           options={{
             title:"Sign Up",
           }}
         />
-        <AuthTopTabs.Screen
-          name="signin"
-          options={{
-            title:"Sign In"
-          }}
-        />
+        
       </AuthTopTabs>
       </SafeAreaView>
     )
