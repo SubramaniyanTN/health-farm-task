@@ -1,3 +1,4 @@
+import { setAuthData, useAppDispatch } from "@/redux";
 import { alertService, supabase } from "@/src";
 import { SignInWithPasswordCredentials, SignUpWithPasswordCredentials, VerifyOtpParams } from "@supabase/supabase-js";
 import { useMutation } from "@tanstack/react-query";
@@ -27,6 +28,7 @@ export const useSignUp = () => {
 }
 
 export const useSignIn = () => {
+    const dispatch = useAppDispatch();
     return useMutation({
         mutationFn:async (data: SignInWithPasswordCredentials) => {
             const response= await supabase.auth.signInWithPassword(data)
@@ -37,6 +39,12 @@ export const useSignIn = () => {
         },
         onSuccess: (data) => {
             console.log("On Success",data)
+            dispatch(setAuthData({
+                accessToken: data.session.access_token,
+                refreshToken: data.session.refresh_token,
+                isAuthenticated: true,
+                user: data.user,
+            }))
         },
         onError: (error) => {
             console.log("On Failure",error)

@@ -35,13 +35,20 @@ export default function CustomCountrySelect({ name }: CustomCountryPickProps) {
         ]}
       >
         <Pressable style={[styles.inputContainer,]} onPress={handleShowPicker}>
-          <Text style={[styles.label,isError && styles.errorText]} >{value ? value : "Please select a country"}</Text>
+          <Text style={[styles.label, isError && styles.errorText]} >{value ? value : "Please select a country"}</Text>
         </Pressable>
       </View>
       <CountrySelect
         visible={showPicker}
         onClose={hidePicker}
         onSelect={handleCountrySelect}
+        countrySelectStyle={{ 
+          content: styles.countrySelect,
+          countryItem: styles.countryItem,
+          countryName: styles.countryName,
+          callingCode: styles.countryName,
+          searchInput:styles.searchInput,
+        }}
       />
       {error?.message && (
         <Text testID={`${name}-input-error-message`} style={styles.errorText}>
@@ -71,10 +78,27 @@ const styles = StyleSheet.create((theme) => ({
     ...theme.shadows.card,
   },
   errorContainer: {
-    borderColor:theme.colors.danger,
-    borderWidth:1
+    borderColor: theme.colors.danger,
+    borderWidth: 1
   },
-  inputContainer:{
-    borderColor:theme.colors.inputBorder
+  inputContainer: {
+    borderColor: theme.colors.inputBorder
+  },
+  countrySelect: {
+    backgroundColor: theme.colors.white
+  },
+  countryItem: {
+    backgroundColor: theme.colors.inputBackground,
+    borderColor: theme.colors.inputBorder,
+  },
+  countryName: {
+    color: theme.colors.textPrimary
+  },
+  searchInput:{
+    minHeight:40,
+    backgroundColor:theme.colors.inputBackground,
+    borderRadius:9,
+    borderColor:theme.colors.inputBorder,
+    color:theme.colors.textPrimary,
   }
 }));

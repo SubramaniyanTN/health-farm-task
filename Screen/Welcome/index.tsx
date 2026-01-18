@@ -1,6 +1,7 @@
 import { Logo } from "@/assets/svg";
 import { AnimatedView, ScalableButton, ThemedText } from "@/components";
-import { router } from "expo-router";
+import { useAppDispatch } from "@/redux";
+import { setHasSeenWelcome } from "@/redux/hasSeenWelcome/hasSeenWelcome";
 import { useState } from "react";
 import { useWindowDimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -8,9 +9,10 @@ import { StyleSheet } from "react-native-unistyles";
 let PADDING = 10;
 export default function Welcome() {
   const [disabled,setDisabled]=useState(false)
+  const dispatch=useAppDispatch()
   const handleWelcome = () => {
     setDisabled(true)
-    router.push("/auth/signin");
+    dispatch(setHasSeenWelcome(true))
     setDisabled(true)
   }
   const {width,}=useWindowDimensions()
