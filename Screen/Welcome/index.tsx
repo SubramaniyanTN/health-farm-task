@@ -1,15 +1,19 @@
 import { Logo } from "@/assets/svg";
 import { AnimatedView, ScalableButton, ThemedText } from "@/components";
 import { router } from "expo-router";
+import { useState } from "react";
 import { useWindowDimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
 let PADDING = 10;
 export default function Welcome() {
+  const [disabled,setDisabled]=useState(false)
   const handleWelcome = () => {
+    setDisabled(true)
     router.push("/auth/signin");
+    setDisabled(true)
   }
-  const {width,height}=useWindowDimensions()
+  const {width,}=useWindowDimensions()
   return (
     <SafeAreaView style={{flex:1}}>
     <AnimatedView style={styles.container}>
@@ -19,6 +23,7 @@ export default function Welcome() {
         <ScalableButton
             onPress={handleWelcome}
             label={"welcome.submit"}
+            disabled={disabled}
           />
     </AnimatedView>
     </SafeAreaView>

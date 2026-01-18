@@ -50,6 +50,7 @@ export default function SignUp() {
           <ScalableButton
             onPress={methods.handleSubmit(handleSubmit)}
             label={"Submit"}
+            disabled={signUp.isPending}
           />
         </FormProvider>
       </KeyboardAwareScrollView>
