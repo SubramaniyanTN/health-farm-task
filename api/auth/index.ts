@@ -15,7 +15,6 @@ export const useSignUp = () => {
             return response.data
         },
         onSuccess: (data) => {
-            console.log("On Success",data)
             alertService.alert?.({
                 type:DropdownAlertType.Success,
                 title:"Success",
@@ -38,7 +37,6 @@ export const useSignIn = () => {
             return response.data
         },
         onSuccess: (data) => {
-            console.log("On Success",data)
             dispatch(setAuthData({
                 accessToken: data.session.access_token,
                 refreshToken: data.session.refresh_token,
@@ -46,9 +44,6 @@ export const useSignIn = () => {
                 user: data.user,
             }))
         },
-        onError: (error) => {
-            console.log("On Failure",error)
-        }
     })
 }
 
@@ -70,8 +65,5 @@ export const useOtpVerify = () => {
               });
               router.push(`/auth/signin?email=${data.user?.email}`)
         },
-        onError: (error) => {
-            console.log("On Failure",error)
-        }
     })
 }

@@ -1,5 +1,5 @@
 import { EmptyStateImage } from "@/assets/images";
-import { useCustomTranslation } from "@/locale";
+import { useState } from "react";
 import { TextStyle, View, ViewStyle } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 import ScalableButton from "../ScalableButton/ScalableButton";
@@ -34,7 +34,17 @@ export default function RetryComponent({
   descriptionStyle,
   buttonStyle,
 }: RetryComponentProps) {
-  const translation = useCustomTranslation();
+  const [isDisabled,setIsDisabled] = useState(false);
+  const handleRetry =async () => {
+    setIsDisabled(true);
+    try {
+      await onRetry?.();
+    } catch (error) {
+      throw error;
+    }finally{
+      setIsDisabled(false);
+    }
+  }
   return (
     <View style={[styles.container, containerStyle]}>
       {Icon ? <Icon /> : <EmptyStateImage />}
@@ -53,7 +63,9 @@ export default function RetryComponent({
       ) : (
         <ScalableButton
           label={"try-again"}
-          onPress={onRetry}
+          onPress={handleRetry}
+          disabled={isDisabled}
+          isPending={isDisabled}
           style={styles.button}
           textStyle={{textAlign:"center"}}
           leftIcon={null}

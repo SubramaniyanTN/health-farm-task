@@ -12,7 +12,6 @@ export default function CreateChannel() {
         resolver:zodResolver(channelValidation)
     })
     const handleSubmit :SubmitHandler<ChannelValidationType> = (data) => {
-       console.log({data})
        createChannel.mutate(data);
     }
     return (

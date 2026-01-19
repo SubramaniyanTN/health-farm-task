@@ -17,7 +17,7 @@ export default function DashboardLayout() {
             />
             <Stack.Screen name="[id]" 
             options={({ route }) => ({ 
-                header: () => (<SafeAreaView edges={["top"]} ><Header variant="title" label={route.params?.title ?? "Messages"} /></SafeAreaView>), 
+                header: () => (<SafeAreaView edges={["top"]} ><Header variant="title" closeIconRequired label={route.params?.title ?? "Messages"} /></SafeAreaView>), 
                 headerShown: true })} />
         </Stack>
     )

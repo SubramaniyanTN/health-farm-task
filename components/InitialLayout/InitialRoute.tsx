@@ -22,7 +22,6 @@ export default function InitialRoute() {
   const dispatch = useAppDispatch()
   const { accessToken } = useAppSelector((s) => s.auth)
   const { hasSeenWelcome } = useAppSelector((s) => s.hasSeenWelcome)
-  console.log({ hasSeenWelcome, accessToken })
   useEffect(() => {
     const { data: sub } = supabase.auth.onAuthStateChange(
       (event, session) => {

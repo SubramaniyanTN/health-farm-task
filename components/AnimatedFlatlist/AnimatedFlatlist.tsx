@@ -1,5 +1,5 @@
 import { JSX } from "react";
-import { ActivityIndicator, FlatList, FlatListProps } from "react-native";
+import { ActivityIndicator, FlatList, FlatListProps, ListRenderItem } from "react-native";
 import Animated, { AnimatedProps, FadeInDown } from "react-native-reanimated";
 import RetryComponent, { RetryComponentProps } from "./RetryComponent";
 
@@ -11,7 +11,7 @@ export type AnimatedFlatListProps<T> = AnimatedProps<FlatListProps<T>> & {
   isError?: boolean;
   LoadingComponent?: () => JSX.Element;
   ErrorComponent?: () => JSX.Element;
-  SkeletonLoader?: () => JSX.Element;
+  SkeletonLoader?: ListRenderItem<any> | null | undefined;
   numOfSkeletonLoader?: number;
   onRetry?: () => void;
   searched?: boolean;
@@ -46,7 +46,7 @@ export default function AnimatedFlatList<T>({
           {...rest}
           data={Array.from({ length: numOfSkeletonLoader })}
           keyExtractor={(_, i) => `skeleton-${i}`}
-          renderItem={() => <SkeletonLoader />}
+          renderItem={(props) => <SkeletonLoader {...props} />}
         />
         </>
       );
@@ -86,14 +86,15 @@ export default function AnimatedFlatList<T>({
       description="It looks like there are currently no data to display."
     />
   );
-
+  const isInverted = ((Array.isArray(rest.data) && rest.data.length > 0 ) && !isError)? rest.inverted : false;
   return (
     <>
     {StaticHeaderComponent && <StaticHeaderComponent />}
     <AnimatedFlatListComp
       entering={FadeInDown.duration(500)}
-      ListEmptyComponent={ListEmptyComponent}
       {...rest}
+      ListEmptyComponent={ListEmptyComponent}
+      inverted={isInverted}
     />
     </>
   );

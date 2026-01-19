@@ -8,7 +8,6 @@ export const useMessageRealtime = (channelId?: string) => {
 
   useEffect(() => {
     if (!channelId) return;
-    console.log({channelId})
     const channel = subscribeToMessages(channelId, queryClient);
 
     return () => {

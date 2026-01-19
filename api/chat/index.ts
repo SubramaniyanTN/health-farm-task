@@ -41,12 +41,6 @@ export const useSendMessage = () => {
 
       return data as Message;
     },
-    onSuccess: (data) => {
-      console.log({data})
-    },
-    onError: (error) => {
-      console.log({error})
-    }
   });
 };
 
@@ -74,9 +68,6 @@ export const useCreateChannel=()=>{
       queryClient.invalidateQueries({ queryKey: queries.chat._def });
       router.back()
     },
-    onError: (error) => {
-      console.log({error})
-    }
   })
 }
 
