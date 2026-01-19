@@ -9,7 +9,7 @@ import {
 import { supabase } from '@/src'
 import { Stack } from 'expo-router'
 import { useEffect } from 'react'
-import { Alert, AppState } from 'react-native'
+import { AppState } from 'react-native'
 import { StyleSheet } from 'react-native-unistyles'
 
 // Supabase auto-refresh
@@ -33,7 +33,6 @@ export default function InitialRoute() {
           event === 'SIGNED_IN' ||
           event === 'TOKEN_REFRESHED'
         ) {
-          Alert.alert("Initial session",event)
           dispatch(
             setAuthData({
               isAuthenticated: !!session,

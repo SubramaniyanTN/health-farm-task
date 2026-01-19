@@ -1,3 +1,4 @@
+export { default as AnimatedFlatlist } from './AnimatedFlatlist/AnimatedFlatlist'
 export { default as AnimatedView } from './AnimatedView/AnimatedView'
 export { default as Avatar } from './Avatar/Avatar'
 export { default as CustomCountrySelect } from './CountrySelect/CountrySelect'
