@@ -24,7 +24,7 @@ export default function ThemedText({
   ...rest
 }: ThemedTextProps) {
   const translation = useCustomTranslation();
-  const labelText = translation(label);
+  const labelText =label ? translation(label) : undefined;
 
   // ✅ DOC-CORRECT USAGE
   styles.useVariants({

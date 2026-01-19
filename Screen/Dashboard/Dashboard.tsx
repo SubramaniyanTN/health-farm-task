@@ -10,7 +10,7 @@ export default function Dashboard() {
     const {data,isLoading}=useGetChannels()
     const RenderItem=({item}:{item:Channel})=>{
         const handleNavigation=()=>{
-            router.push(`/dashboard/${item.id}`)
+            router.push(`/dashboard/${item.id}?title=${item.name}`)
         }
         return (<Pressable onPress={handleNavigation} style={styles.itemContainer} >
             <View style={styles.avatar} />

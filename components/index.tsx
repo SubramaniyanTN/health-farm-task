@@ -1,6 +1,7 @@
 export { default as AnimatedView } from './AnimatedView/AnimatedView'
 export { default as CustomCountrySelect } from './CountrySelect/CountrySelect'
 export { default as CustomInput } from './CustomInput/CustomInput'
+export { default as Header } from './Header/Header'
 export { default as InitialLayout } from './InitialLayout/InitialLayout'
 export { default as PasswordInput } from './PasswordInput/PasswordInput'
 export { default as Radio } from './Radio/Radio'
