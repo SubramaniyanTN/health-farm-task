@@ -57,14 +57,22 @@ export default function AnimatedFlatList<T>({
 
   // 🔹 Error
   if (isError) {
-    if (ErrorComponent) return <ErrorComponent />;
+    if (ErrorComponent) return (
+      <>
+      {StaticHeaderComponent && <StaticHeaderComponent />}
+      <ErrorComponent />
+      </>
+    );
 
-    return (
+    return (  
+      <>
+      {StaticHeaderComponent && <StaticHeaderComponent />}
       <RetryComponent
         {...retryComponentProps}
-        onRetry={onRetry}
-        errorMessage={errorMessage}
-      />
+          onRetry={onRetry}
+          errorMessage={errorMessage}
+        />
+      </>
     );
   }
 

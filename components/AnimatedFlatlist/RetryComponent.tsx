@@ -1,6 +1,8 @@
 import { EmptyStateImage } from "@/assets/images";
-import { Pressable, TextStyle, View, ViewStyle } from "react-native";
+import { useCustomTranslation } from "@/locale";
+import { TextStyle, View, ViewStyle } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+import ScalableButton from "../ScalableButton/ScalableButton";
 import ThemedText from "../ThemedText/ThemedText";
 
 export type RetryComponentProps = {
@@ -32,11 +34,12 @@ export default function RetryComponent({
   descriptionStyle,
   buttonStyle,
 }: RetryComponentProps) {
+  const translation = useCustomTranslation();
   return (
     <View style={[styles.container, containerStyle]}>
       {Icon ? <Icon /> : <EmptyStateImage />}
 
-      <ThemedText style={[styles.title, titleStyle]}>
+      <ThemedText variant="title" style={[styles.title, titleStyle]}>
         {errorMessage ?? "Server Error"}
       </ThemedText>
 
@@ -48,19 +51,21 @@ export default function RetryComponent({
       {RetryButtonComponent ? (
         <RetryButtonComponent />
       ) : (
-        <Pressable
-          style={[styles.touchable, buttonStyle]}
+        <ScalableButton
+          label={"try-again"}
           onPress={onRetry}
-        >
-          <ThemedText>{buttonText}</ThemedText>
-        </Pressable>
+          style={styles.button}
+          textStyle={{textAlign:"center"}}
+          leftIcon={null}
+        />
       )}
     </View>
   );
 }
 
 const styles = StyleSheet.create((theme) => ({
-  container: {
+    container: {
+    width:"100%",
     alignItems: "center",
     alignSelf: "center",
     gap: 16,
@@ -71,15 +76,11 @@ const styles = StyleSheet.create((theme) => ({
   },
   description: {
     textAlign: "center",
-    color: theme.colors.textSecondary,
+    color: theme.colors.textPrimary,
   },
-  touchable: {
-    minWidth: 120,
-    paddingVertical: 10,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: theme.colors.primary,
-  },
+  button:{
+    width:"50%",
+    justifyContent:"center",
+    alignItems:"center",
+  }
 }));

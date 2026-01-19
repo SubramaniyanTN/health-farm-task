@@ -59,6 +59,7 @@
     }
   },
   "Submit":"Submit",
+  "try-again":"Try again",
   "create-channel":{
     "label":"Create Channel",
     "name":"Channel Name",
