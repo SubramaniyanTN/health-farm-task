@@ -1,7 +1,7 @@
 import { TranslationKeys, useCustomTranslation } from "@/locale";
 import { ComponentProps } from "react";
 import { StyleProp, TextStyle } from "react-native";
-import Animated, { FadeInDown, FadeOutDown } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 
 type AnimatedTextProps =ComponentProps<typeof Animated.Text>;
 
@@ -35,8 +35,6 @@ export default function ThemedText({
   return (
     <Animated.Text
       testID={`${label}-text`}
-      entering={FadeInDown.duration(1000)}
-      exiting={FadeOutDown.duration(1000)}
       {...rest}
       style={[styles.text, style]}
 

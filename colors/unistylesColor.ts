@@ -11,6 +11,7 @@ export const lightThemeColors = {
   svgGray: "#B2BCC9",
   danger: "#ED5E5E",
   primary: "#2E6FF3",
+  skeletonBackground: "#9CA3AF",
 };
 
 export const darkThemeColors = {
@@ -24,6 +25,7 @@ export const darkThemeColors = {
   svgGray: "#7D8A95",
   danger: "#ED5E5E",
   primary: "#2E6FF3",
+  skeletonBackground: "#9CA3AF",
 };
 
 export type ColorName = keyof typeof lightThemeColors;
