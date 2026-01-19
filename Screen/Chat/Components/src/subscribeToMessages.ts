@@ -1,4 +1,4 @@
-import { Message } from "@/api";
+import { queries } from "@/api/queries";
 import { supabase } from "@/src";
 import { QueryClient } from "@tanstack/react-query";
 
@@ -17,21 +17,7 @@ export const subscribeToMessages = (
         filter: `channel_id=eq.${channelId}`,
       },
       (payload) => {
-        const newMessage = payload.new as Message;
-
-        // 🔥 Merge into React Query cache
-        queryClient.setQueryData<Message[]>(
-          ["chat", "messages", channelId],
-          (old) => {
-            if (!old) return [newMessage];
-
-            // ✅ de-duplicate (important!)
-            const exists = old.some((m) => m.id === newMessage.id);
-            if (exists) return old;
-
-            return [...old, newMessage];
-          }
-        );
+        queryClient.invalidateQueries({ queryKey: queries.chat._def });
       }
     )
     .subscribe();
