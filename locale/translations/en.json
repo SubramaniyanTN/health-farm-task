@@ -59,6 +59,11 @@
     }
   },
   "Submit":"Submit",
+  "create-channel":{
+    "label":"Create Channel",
+    "name":"Channel Name",
+    "name-placeholder":"Enter your channel name"
+  },
   "chat":{
     "message":"Enter your message",
     "send":"Send"
