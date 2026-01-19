@@ -4,7 +4,7 @@ import { useGlobalSearchParams } from "expo-router";
 import { FlatList, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
-import { Footer, useMessageRealtime } from "./Components";
+import { ChatContainer, Footer, useMessageRealtime } from "./Components";
 export default function Chat() {
     const { id } = useGlobalSearchParams<{ id: string }>();
     const { bottom } = useSafeAreaInsets()
@@ -17,6 +17,13 @@ export default function Chat() {
     return (
         <View style={[styles.container, { paddingBottom: bottom }]}>
             <FlatList data={data} renderItem={RenderItem} style={styles.list} contentContainerStyle={{ flexGrow: 1 }} />
+            <FlatList
+        data={data ?? []}
+        keyExtractor={(item) => item.id.toString()}
+        inverted
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item }) => <ChatContainer {...item} />}
+      />
             <Footer />
         </View>
     )

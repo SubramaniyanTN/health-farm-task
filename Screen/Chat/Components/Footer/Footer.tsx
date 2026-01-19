@@ -60,5 +60,6 @@ const styles =StyleSheet.create((theme)=>({
     },
     input:{
         flexGrow:1,
+        maxWidth:"70%"
     }
 }))

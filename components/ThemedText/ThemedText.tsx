@@ -34,11 +34,12 @@ export default function ThemedText({
 
   return (
     <Animated.Text
-      {...rest}
       testID={`${label}-text`}
-      style={[styles.text, style]}
       entering={FadeInDown.duration(1000)}
       exiting={FadeOutDown.duration(1000)}
+      {...rest}
+      style={[styles.text, style]}
+
     >
       {children ?? labelText}
     </Animated.Text>
