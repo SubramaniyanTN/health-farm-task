@@ -13,6 +13,7 @@ export const useGetMessages = (channelId:string) => {
     return useQuery<Message[]>({
         ...queries.chat.messages(channelId),
         enabled: !!channelId, 
+        select: (data) => data.reverse(),
     })
 }
 

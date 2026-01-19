@@ -1,4 +1,5 @@
 export { default as AnimatedView } from './AnimatedView/AnimatedView'
+export { default as Avatar } from './Avatar/Avatar'
 export { default as CustomCountrySelect } from './CountrySelect/CountrySelect'
 export { default as CustomInput } from './CustomInput/CustomInput'
 export { default as Header } from './Header/Header'
