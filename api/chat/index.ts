@@ -9,6 +9,13 @@ export const useGetChannels =()=>{
     })
 }
 
+export const useGetMessages = (channelId:string) => {
+    return useQuery<Message[]>({
+        ...queries.chat.messages(channelId),
+        enabled: !!channelId, 
+    })
+}
+
 export const useSendMessage = () => {
   return useMutation<Message, Error, SendMessageInput>({
     mutationFn: async ({ channelId, senderId, content }) => {
@@ -30,5 +37,13 @@ export const useSendMessage = () => {
 
       return data as Message;
     },
+    onSuccess: (data) => {
+      console.log({data})
+    },
+    onError: (error) => {
+      console.log({error})
+    }
   });
 };
+
+
