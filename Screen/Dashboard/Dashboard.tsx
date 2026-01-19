@@ -9,7 +9,7 @@ import { StyleSheet } from "react-native-unistyles";
 import { ChannelHeader, ChannelSkeleton } from "./components";
 
 export default function Dashboard() {
-    const { data, isLoading } = useGetChannels()
+    const { data, isLoading,refetch } = useGetChannels()
     const RenderItem = ({ item }: { item: Channel }) => {
         const handleNavigation = () => {
             router.push(`/dashboard/${item.id}?title=${item.name}`)
@@ -21,10 +21,9 @@ export default function Dashboard() {
             source={""}
             size={40}
             />
-            <ThemedText variant="base" >{item.name}</ThemedText>
+            <ThemedText style={styles.text} variant="base" >{item.name}</ThemedText>
         </Pressable>)
     }
-   
     return (
         <SafeAreaView style={styles.container}>
             <AnimatedFlatList
@@ -34,7 +33,8 @@ export default function Dashboard() {
                 isLoading={isLoading}
                 renderItem={RenderItem}
                 keyExtractor={(item) => item.id}
-                ItemSeparatorComponent={()=> <View style={{height:10}} />}
+                onRetry={refetch}
+                ItemSeparatorComponent={()=> <View style={styles.separator} />}
                 entering={undefined}
                 StaticHeaderComponent={ChannelHeader}
             />
@@ -56,4 +56,13 @@ const styles = StyleSheet.create((theme) => ({
     list:{
         paddingTop:10
     },
+    text:{
+        fontSize:16,
+        fontWeight:"600"
+    },
+    separator:{
+        height:1,
+        backgroundColor:theme.colors.inputBorder,
+        marginVertical:10
+    }
 }))
