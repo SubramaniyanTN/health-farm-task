@@ -1,3 +1,4 @@
+import { Header } from '@/components'
 import {
   logout,
   setAuthData,
@@ -8,15 +9,8 @@ import {
 import { supabase } from '@/src'
 import { Stack } from 'expo-router'
 import { useEffect } from 'react'
-import { Alert, AppState, View } from 'react-native'
+import { Alert, AppState } from 'react-native'
 import { StyleSheet } from 'react-native-unistyles'
-import ThemedText from '../ThemedText/ThemedText'
-
-const Header = () => (
-  <View style={styles.headerStyle}>
-    <ThemedText label="otpverify.header" variant="base" tone="normal" />
-  </View>
-)
 
 // Supabase auto-refresh
 AppState.addEventListener('change', (state) => {
@@ -78,7 +72,7 @@ export default function InitialRoute() {
           presentation: 'formSheet',
           sheetGrabberVisible: true,
           sheetAllowedDetents: [0.45],
-          header: () => <Header />,
+          header: () => <Header label="otpverify.header" />,
           contentStyle: styles.headerStyle,
         }}
       />
