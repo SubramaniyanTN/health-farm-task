@@ -1,15 +1,16 @@
 import { ThemedText } from "@/components"
 import { TranslationKeys } from "@/locale"
-import { View } from "react-native"
+import { StyleProp, View, ViewStyle } from "react-native"
 import { StyleSheet } from "react-native-unistyles"
 import { ThemedTextVariants } from "../ThemedText/ThemedText"
-type HeaderProps ={variant?:ThemedTextVariants}&(
+
+type HeaderProps ={variant?:ThemedTextVariants;wrapperStyle?:StyleProp<ViewStyle>}&(
   { title: string }
   | { label: TranslationKeys }
 )
 
 const Header = (props: HeaderProps) => (
-  <View style={styles.headerStyle}>
+  <View style={[styles.headerStyle,props.wrapperStyle]}>
     {'title' in props ? (
       <ThemedText variant={props.variant||"base"} tone="normal">
         {props.title}

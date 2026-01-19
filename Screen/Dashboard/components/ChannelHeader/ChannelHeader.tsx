@@ -1,13 +1,17 @@
 import { ScalableButton, ThemedText } from "@/components"
 import { ThemedSVG } from "@/ThemeSvg"
+import { router } from "expo-router"
 import { View } from "react-native"
 import { StyleSheet } from "react-native-unistyles"
 
 const ChannelHeader = () => {
+    const handleNavigation = () => {
+        router.push("/dashboard/createchannel")
+    }
     return (
         <View style={styles.headerContainer}>
         <ThemedText variant="title">Channels</ThemedText>
-        <ScalableButton  label={null} style={styles.addButton} leftIcon={<ThemedSVG variants="add" fill={"white"} />} />
+        <ScalableButton onPress={handleNavigation} label={null} style={styles.addButton} leftIcon={<ThemedSVG variants="add" fill={"white"} />} />
         </View>
     )
 }

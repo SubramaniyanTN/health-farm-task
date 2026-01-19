@@ -1,5 +1,8 @@
-import { supabase } from "@/src"
-import { useMutation, useQuery } from "@tanstack/react-query"
+import { ChannelValidationType } from "@/Schema"
+import { alertService, supabase } from "@/src"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { router } from "expo-router"
+import { DropdownAlertType } from "react-native-dropdownalert"
 import { queries } from "../queries"
 import { Channel, Message, SendMessageInput } from "./types"
 
@@ -46,5 +49,35 @@ export const useSendMessage = () => {
     }
   });
 };
+
+export const useCreateChannel=()=>{
+  const queryClient = useQueryClient();
+  return useMutation<Channel, Error, ChannelValidationType>({
+    mutationFn: async ({ name }) => {
+      const { data, error } = await supabase
+        .from("channels")
+        .insert({ name })
+        .select()
+        .single();
+
+      if (error) throw error;
+
+      return data as Channel;
+    },
+    onSuccess: (data) => {
+      alertService.alert?.({
+        type:DropdownAlertType.Success,
+        title:"Success",
+        message:"Channel created successfully",
+        interval:1000
+      });
+      queryClient.invalidateQueries({ queryKey: queries.chat._def });
+      router.back()
+    },
+    onError: (error) => {
+      console.log({error})
+    }
+  })
+}
 
 
