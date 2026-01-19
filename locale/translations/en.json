@@ -58,7 +58,11 @@
       "placeholder":"Enter your password"
     }
   },
-  "Submit":"Submit"
+  "Submit":"Submit",
+  "chat":{
+    "message":"Enter your message",
+    "send":"Send"
+  }
 }
 
 
