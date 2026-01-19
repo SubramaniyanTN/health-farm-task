@@ -9,7 +9,7 @@ import { StyleSheet } from "react-native-unistyles";
 import { ChannelHeader, ChannelSkeleton } from "./components";
 
 export default function Dashboard() {
-    const { data, isLoading,refetch } = useGetChannels()
+    const { data, isLoading,refetch,isError,error } = useGetChannels()
     const RenderItem = ({ item }: { item: Channel }) => {
         const handleNavigation = () => {
             router.push(`/dashboard/${item.id}?title=${item.name}`)
@@ -28,6 +28,8 @@ export default function Dashboard() {
         <SafeAreaView style={styles.container}>
             <AnimatedFlatList
                 data={data}
+                isError={isError}
+                errorMessage={error?.message}
                 SkeletonLoader={ChannelSkeleton}
                 style={styles.list}
                 isLoading={isLoading}

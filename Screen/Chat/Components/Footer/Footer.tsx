@@ -18,7 +18,6 @@ export default function Footer() {
     const { id } = useGlobalSearchParams<{id:string}>();
     const {user}=useAppSelector((state)=>state.auth)
     const onSubmit:SubmitHandler<MessageValidationType> = (data)=>{
-        console.log(data)
         if(!user?.id) {
             alertService.alert?.({
                 type:DropdownAlertType.Error,

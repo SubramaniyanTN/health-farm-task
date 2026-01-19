@@ -1,9 +1,10 @@
-import { Add, EyeClosed, EyeOpen, UserRounded } from "@/assets/svg";
+import { Add, ChevronLeft, EyeClosed, EyeOpen, UserRounded } from "@/assets/svg";
 export const icons ={
     "eye-closed":EyeClosed,
     "eye-opened":EyeOpen,
     "user-rounded":UserRounded,
-    "add":Add
+    "add":Add,
+    "chevron-left":ChevronLeft
 };  
 
 

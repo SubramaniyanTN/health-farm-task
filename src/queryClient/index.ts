@@ -1,7 +1,7 @@
 import {
-    MutationCache,
-    QueryCache,
-    QueryClient
+  MutationCache,
+  QueryCache,
+  QueryClient
 } from "@tanstack/react-query";
 import { DropdownAlertType } from "react-native-dropdownalert";
 import { alertService } from "../utils/alerts";
@@ -17,10 +17,6 @@ export const queryClient = new QueryClient({
     },
     mutationCache: new MutationCache({
       onError: (error: any,variables) => {
-        console.log(
-          JSON.stringify(error),
-          JSON.stringify(variables)
-        );
         alertService.alert?.({
             type:DropdownAlertType.Error,
             title:"Error",
@@ -32,10 +28,6 @@ export const queryClient = new QueryClient({
     }),
     queryCache:new QueryCache({
       onError:(error:any,query)=>{
-        console.log(
-            JSON.stringify(error),
-            JSON.stringify(query)
-          );
           alertService.alert?.({
               type:DropdownAlertType.Error,
               title:"Error",

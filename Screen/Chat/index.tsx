@@ -1,29 +1,35 @@
 
-import { Message, useGetMessages } from "@/api";
+import { useGetMessages } from "@/api";
+import { AnimatedFlatlist } from "@/components";
 import { useGlobalSearchParams } from "expo-router";
-import { FlatList, Text, View } from "react-native";
+import { View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
-import { ChatContainer, Footer, useMessageRealtime } from "./Components";
+import { ChatContainer, ChatSkeleton, Footer, useMessageRealtime } from "./Components";
 export default function Chat() {
     const { id } = useGlobalSearchParams<{ id: string }>();
     const { bottom } = useSafeAreaInsets()
-    const { data, isLoading } = useGetMessages(id as string)
-    console.log({ data })
+    const { data, isLoading ,isError,error,refetch} = useGetMessages(id as string)
     useMessageRealtime(id);
-    const RenderItem = ({ item }: { item: Message }) => {
-        return <Text>{item.content}</Text>
-    }
     return (
         <View style={[styles.container, { paddingBottom: bottom }]}>
-            <FlatList data={data} renderItem={RenderItem} style={styles.list} contentContainerStyle={{ flexGrow: 1 }} />
-            <FlatList
-        data={data ?? []}
-        keyExtractor={(item) => item.id.toString()}
-        inverted
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => <ChatContainer {...item} />}
-      />
+            <View style={styles.listContainer} >
+            <AnimatedFlatlist
+                data={data}
+                isLoading={isLoading}
+                isError={isError}
+                errorMessage={error?.message}
+                onRetry={refetch}
+                SkeletonLoader={(props)=><ChatSkeleton {...props} />}
+                keyExtractor={(item) => item.id.toString()}
+                style={styles.list}
+                contentContainerStyle={{ flexGrow: 1 }}
+                inverted
+                entering={undefined}
+                showsVerticalScrollIndicator={false}
+                renderItem={({ item }) => <ChatContainer {...item} />}
+            />
+            </View>
             <Footer />
         </View>
     )
@@ -36,4 +42,7 @@ const styles = StyleSheet.create((theme) => ({
     list: {
         flex: 1,
     },
+    listContainer:{
+        flex:1,
+    }
 }))
