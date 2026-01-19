@@ -2,15 +2,18 @@ import { TranslationKeys, useCustomTranslation } from "@/locale";
 import React, { ComponentProps, useState } from "react";
 import { useController } from "react-hook-form";
 import {
+  StyleProp,
   Text,
   TextInput,
-  View
+  View,
+  ViewStyle
 } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
 interface CustomInputProps extends ComponentProps<typeof TextInput> {
   name: string;
-  label: TranslationKeys;
+  label?: TranslationKeys;
   placeholder: TranslationKeys;
+  wrapperStyle?: StyleProp<ViewStyle>;  
 }
 
 /* -----------------------------------------------------
@@ -22,6 +25,7 @@ export default function CustomInput({
   label,
   placeholder,
   style,
+  wrapperStyle,
   ...rest
 }: CustomInputProps) {
   const {
@@ -29,7 +33,7 @@ export default function CustomInput({
     fieldState: { error },
   } = useController({ name });
   const translation = useCustomTranslation();
-  const labelText = translation(label);
+  const labelText = label ? translation(label) : "";
   const placeholderText = translation(placeholder);
   const isError = error && error.message;
   const [isFocused, setIsFocused] = useState(false);
@@ -41,7 +45,7 @@ export default function CustomInput({
     onBlur();
   };
   return (
-    <View style={[styles.wrapper]}>
+    <View style={[styles.wrapper, wrapperStyle]}>
       {/* LABEL */}
       {label && (
         <Text testID={`${name}-label`} style={[styles.label,]}>
