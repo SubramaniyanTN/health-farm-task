@@ -26,6 +26,8 @@ export default function CreateChannel() {
           <ScalableButton
             onPress={methods.handleSubmit(handleSubmit)}
             label={"Submit"}
+            disabled={createChannel.isPending}
+            isPending={createChannel.isPending}
           />
         </FormProvider>
       </KeyboardAvoidingView>
