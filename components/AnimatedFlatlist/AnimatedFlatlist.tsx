@@ -92,6 +92,7 @@ export default function AnimatedFlatList<T>({
     {StaticHeaderComponent && <StaticHeaderComponent />}
     <AnimatedFlatListComp
       entering={FadeInDown.duration(500)}
+      showsVerticalScrollIndicator={false}
       {...rest}
       ListEmptyComponent={ListEmptyComponent}
       inverted={isInverted}

@@ -70,7 +70,7 @@ export default function InitialRoute() {
           headerShown: false,
           presentation: 'formSheet',
           sheetGrabberVisible: true,
-          sheetAllowedDetents: [0.45],
+          sheetAllowedDetents:[ 0.5,0.75],
           header: () => <Header label="otpverify.header" />,
           contentStyle: styles.headerStyle,
         }}
@@ -87,5 +87,6 @@ const styles = StyleSheet.create((theme) => ({
   headerStyle: {
     backgroundColor: theme.colors.white,
     width: '100%',
+    height:"100%",
   },
 }))
