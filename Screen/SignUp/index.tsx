@@ -55,6 +55,7 @@ export default function SignUp() {
           <ScalableButton
             onPress={methods.handleSubmit(handleSubmit)}
             label={"Submit"}
+            isPending={signUp.isPending}
             disabled={signUp.isPending}
           />
           <ThemedText style={styles.otpVerifyText} onPress={handleNavigateToOtpVerify} label="signup.already-received-otp.label" variant="base" tone="normal" />

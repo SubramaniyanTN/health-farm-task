@@ -1,4 +1,4 @@
-import { ScalableButton, ThemedText } from "@/components"
+import { ProfileAvatar, ScalableButton, ThemedText } from "@/components"
 import { ThemedSVG } from "@/ThemeSvg"
 import { router } from "expo-router"
 import { View } from "react-native"
@@ -11,7 +11,10 @@ const ChannelHeader = () => {
     return (
         <View style={styles.headerContainer}>
         <ThemedText variant="title">Channels</ThemedText>
-        <ScalableButton onPress={handleNavigation} label={null} style={styles.addButton} leftIcon={<ThemedSVG variants="add" fill={"white"} />} />
+       <View style={styles.rightContainer} >
+       <ScalableButton onPress={handleNavigation} label={null} style={styles.addButton} leftIcon={<ThemedSVG variants="add" fill={"white"} />} />
+       <ProfileAvatar />
+       </View>
         </View>
     )
 }
@@ -28,5 +31,11 @@ const styles = StyleSheet.create((theme)=>({
         width:40,
         height:40,
         borderRadius:50,
+    },
+    rightContainer:{
+        display:"flex",
+        flexDirection:"row",
+        alignItems:"center",
+        gap:10,
     }
 }))
