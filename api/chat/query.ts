@@ -27,4 +27,16 @@ export const chatKeys =createQueryKeys("chat",{
           return data ?? [];
         },
       }),
+      leads:()=>({
+        queryKey:[],
+        queryFn:async()=>{
+          const { data, error } = await supabase
+          .from("leads")
+          .select("*")
+          .order("inserted_at", { ascending: false });
+  
+        if (error) throw error;
+        return data;
+        },
+      })
 })

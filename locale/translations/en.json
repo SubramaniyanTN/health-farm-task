@@ -69,7 +69,8 @@
     "message":"Enter your message",
     "send":"Send"
   },
-  "logout":"Logout"
+  "logout":"Logout",
+  "file-upload":"File Upload"
 }
 
 

@@ -7,6 +7,7 @@ export default function DashboardLayout() {
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="index" />
+      <Stack.Screen name="data" />
       <Stack.Screen name="createchannel"
         options={{
           presentation: 'formSheet',
@@ -19,7 +20,7 @@ export default function DashboardLayout() {
         options={{
           presentation: 'formSheet',
           sheetGrabberVisible: true,
-          sheetAllowedDetents: [0.25],
+          sheetAllowedDetents: [0.35],
           contentStyle: styles.headerStyle,
         }}
       />
