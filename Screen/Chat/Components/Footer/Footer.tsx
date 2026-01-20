@@ -55,7 +55,8 @@ const styles =StyleSheet.create((theme)=>({
         alignItems:"center",
         flexDirection:"row",
         justifyContent:"space-between",
-        gap:10
+        gap:10,
+        maxHeight:60,
     },
     inputWrapper:{
         flexGrow:1,

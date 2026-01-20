@@ -4,7 +4,7 @@ import { StyleSheet } from "react-native-unistyles";
 export default function DataLayout() {
     const {bottom}=useSafeAreaInsets()
     return (
-        <Tabs  screenOptions={{ headerShown: false ,tabBarStyle:styles.tabBarContainer,tabBarLabelStyle:styles.tabBarLabel}} >
+        <Tabs  screenOptions={{ headerShown: false ,tabBarStyle:[styles.tabBarContainer,{paddingBottom:bottom+10}],tabBarLabelStyle:styles.tabBarLabel}} >
             <Tabs.Screen name="index" options={{ title: "Data" }} />
             <Tabs.Screen name="fileupload" options={{ title: "File Upload" }} />
         </Tabs>
@@ -14,6 +14,7 @@ export default function DataLayout() {
 const styles = StyleSheet.create((theme)=>({
     tabBarContainer:{
         backgroundColor:theme.colors.inputBackground,
+        minHeight:80
     },
     tabBarLabel:{
         fontSize:16,

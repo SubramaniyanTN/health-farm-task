@@ -12,7 +12,7 @@ export default function DashboardLayout() {
         options={{
           presentation: 'formSheet',
           sheetGrabberVisible: true,
-          sheetAllowedDetents: [0.35],
+          sheetAllowedDetents:[ 0.5,0.75],
           contentStyle: styles.headerStyle,
           header: () => <Header label="logout" />,
           headerShown: false,
@@ -23,7 +23,7 @@ export default function DashboardLayout() {
           headerShown: false,
           presentation: 'formSheet',
           sheetGrabberVisible: true,
-          sheetAllowedDetents: [0.35],
+          sheetAllowedDetents: [ 0.5,0.75],
           contentStyle: styles.headerStyle,
         }}
       />
