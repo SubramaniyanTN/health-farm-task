@@ -1,7 +1,10 @@
+import { ThemedText } from "@/components";
 import { setTheme, useAppSelector } from "@/redux";
 import { ThemedSVG } from "@/ThemeSvg";
 import { ThemedSVGProps } from "@/ThemeSvg/ThemedSvg";
+import { router } from "expo-router";
 import { ColorSchemeName, Pressable, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
 import { useDispatch } from "react-redux";
 
@@ -23,10 +26,13 @@ export default function Theme() {
     const dispatch = useDispatch();
     const {theme} = useAppSelector((state)=>state.theme);
     const handleThemeChange = (theme:NonNullable<ColorSchemeName>) => {
+        router.back();
         dispatch(setTheme(theme));
     }
     return (
-        <View style={styles.container} >
+        <SafeAreaView style={styles.container} >
+            <ThemedText variant="title" label="theme-switch" />
+            <View style={styles.themeContainer} >
             {themeData.map((singleTheme)=>{
                 const isActive = theme === singleTheme.name;
                 const fillColor = isActive ? "themeActiveStrokeColor" : "textPrimary";
@@ -36,16 +42,24 @@ export default function Theme() {
                         <ThemedSVG themedFill={fillColor} themedStroke={strokeColor} variants={singleTheme.icon} />
                     </Pressable>)
             })}
-        </View>
+            </View>
+        </SafeAreaView>
     )
 }
 
 const styles = StyleSheet.create((theme)=>({
     container:{
+        flex:1,
+        paddingVertical:20,
+        paddingHorizontal:10,
+        backgroundColor:theme.colors.white,
+    },
+    themeContainer:{
         width:"100%",
         flexDirection:'row',
         alignItems:'center',
         justifyContent:'space-evenly',
+        paddingVertical:20
     },
     modeContainer:(isActive:boolean)=>({
         width:"47%",
