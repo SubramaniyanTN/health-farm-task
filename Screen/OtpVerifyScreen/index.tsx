@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useGlobalSearchParams } from "expo-router";
 import { useEffect } from "react";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
-import { KeyboardAwareScrollView } from "react-native-keyboard-controller";
+import { KeyboardAvoidingView } from "react-native-keyboard-controller";
 import { StyleSheet } from "react-native-unistyles";
 
 export default function OtpVerifyScreen() {
@@ -28,7 +28,11 @@ export default function OtpVerifyScreen() {
     }, [email])
     return (
         <AnimatedView style={styles.container}>
-        <KeyboardAwareScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scrollView}>
+ <KeyboardAvoidingView
+        behavior={"padding"}
+        keyboardVerticalOffset={0}
+        style={styles.content}
+      >
           <FormProvider {...methods}>
             
             <CustomInput label="signup.email.label" name="email" placeholder="signup.email.placeholder" />
@@ -39,7 +43,7 @@ export default function OtpVerifyScreen() {
               disabled={otpVerify.isPending}
             />
           </FormProvider>
-        </KeyboardAwareScrollView>
+          </KeyboardAvoidingView>
       </AnimatedView>
     )
 }
@@ -50,8 +54,8 @@ const styles = StyleSheet.create((theme)=>( {
       padding: 10,
       backgroundColor:theme.colors.white,
     },
-    scrollView: {
-      flexGrow: 1, // ✅ THIS enables scrolling
+    content: {
+      flex: 1, // ✅ THIS enables scrolling
       gap: 20,
       paddingBottom: 40, // optional but recommended
     },
