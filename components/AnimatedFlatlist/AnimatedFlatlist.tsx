@@ -1,3 +1,4 @@
+import { useCustomTranslation } from "@/locale";
 import { JSX } from "react";
 import { ActivityIndicator, FlatList, FlatListProps, ListRenderItem } from "react-native";
 import Animated, { AnimatedProps, FadeInDown } from "react-native-reanimated";
@@ -34,6 +35,7 @@ export default function AnimatedFlatList<T>({
   retryComponentProps,
   ...rest
 }: AnimatedFlatListProps<T>) {
+  const translation = useCustomTranslation();
   // 🔹 Loading
   if (isLoading) {
     if (LoadingComponent) return <LoadingComponent />;
@@ -81,9 +83,9 @@ export default function AnimatedFlatList<T>({
     <RetryComponent
       onRetry={onRetry}
       errorMessage={
-        errorMessage || (searched ? "No Results Found" : "No Data Found")
+        errorMessage || (searched ? translation("no-results-found") : translation("no-data-found"))
       }
-      description="It looks like there are currently no data to display."
+      description={translation("no-data-to-show")}
     />
   );
   const isInverted = ((Array.isArray(rest.data) && rest.data.length > 0 ) && !isError)? rest.inverted : false;

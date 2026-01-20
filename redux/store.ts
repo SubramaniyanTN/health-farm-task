@@ -22,6 +22,7 @@ const rootReducer = (
     return reducers(
       {
         hasSeenWelcome: state?.hasSeenWelcome,
+        theme: state?.theme,
       } as ReturnType<typeof reducers>,
       action,
     );

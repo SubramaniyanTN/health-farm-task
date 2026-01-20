@@ -91,8 +91,8 @@ const styles = StyleSheet.create((theme) => ({
     color: theme.colors.textPrimary,
   },
   button:{
-    width:"50%",
     justifyContent:"center",
+    paddingHorizontal:10,
     alignItems:"center",
   }
 }));

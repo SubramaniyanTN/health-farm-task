@@ -80,7 +80,11 @@
   "theme-switch":"Theme Switch",
   "select-your-language":"Select your language",
   "english":"English",
-  "tamil":"Tamil"
+  "tamil":"Tamil",
+  "no-data-found":"No data found",
+  "no-results-found":"No results found",
+  "no-data-to-show":"It looks like there are currently no data to display.",
+  "data":"Data"
 }
 
 
