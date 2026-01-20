@@ -23,7 +23,7 @@ export default function DashboardLayout() {
           headerShown: false,
           presentation: 'formSheet',
           sheetGrabberVisible: true,
-          sheetAllowedDetents: [ 0.5,0.75],
+          sheetAllowedDetents: [ 0.35],
           contentStyle: styles.headerStyle,
         }}
       />

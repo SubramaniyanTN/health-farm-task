@@ -70,7 +70,9 @@
     "send":"Send"
   },
   "logout":"Logout",
-  "file-upload":"File Upload"
+  "file-upload":"File Upload",
+  "do-you-have-file-to-upload":"Do you have file to upload?",
+  "click-here":"Click here"
 }
 
 
