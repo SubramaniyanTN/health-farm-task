@@ -4,7 +4,7 @@ import { useCustomTranslation } from "@/locale";
 import { searchValidation, SearchValidationType } from "@/Schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
-import { View } from "react-native";
+import { ActivityIndicator, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
 
@@ -17,7 +17,7 @@ export default function Data() {
         mode: "onChange",
     });
     const search = methods.watch("search");
-    const {data, isError, error, isLoading, refetch}=useGetLeads({searchTerm:search})
+    const {data, isError, error, isLoading, refetch,fetchNextPage,hasNextPage}=useGetLeads({searchTerm:search})
     const translation = useCustomTranslation();
     return (
         <FormProvider {...methods}>
@@ -38,6 +38,13 @@ export default function Data() {
                 )}
                 keyExtractor={(item) => item.id}
                 onRetry={refetch}
+                onEndReachedThreshold={0.5}
+                onEndReached={()=>{
+                    if(!isLoading && !isError && data && data.length > 10){
+                        fetchNextPage()
+                    }
+                }}
+                ListFooterComponent={hasNextPage ? <ActivityIndicator size="small" /> : null}
                 ItemSeparatorComponent={()=> <View style={styles.separator} />}
                 entering={undefined}
             />

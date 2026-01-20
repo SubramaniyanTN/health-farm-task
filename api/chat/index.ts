@@ -109,7 +109,7 @@ export const useGetLeads =({searchTerm}:{searchTerm?:string})=>{
   return useInfiniteQuery<Lead[],any,Lead[]>({
     ...queries.chat.leads({searchTerm}),
     getNextPageParam: (lastPage, pages) => {
-      return lastPage.length > 0 ? pages.length + 1 : undefined;
+      return lastPage.length < 10 ?  undefined : pages.length + 1;
     },
     initialPageParam: 1,
     select: (data) => {
