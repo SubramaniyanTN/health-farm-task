@@ -2,7 +2,7 @@ import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system/legacy";
 import * as XLSX from "xlsx";
 
-const MAX_LEADS = 500;
+const MAX_LEADS = 40000;
 
 export async function pickExcelFile() {
   const result = await DocumentPicker.getDocumentAsync({
