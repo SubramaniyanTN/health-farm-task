@@ -1,4 +1,4 @@
-import { persistor, store } from "@/redux";
+import { persistor, RootState, setTheme, store } from "@/redux";
 import { alertService, queryClient } from "@/src";
 import { DarkTheme, ThemeProvider } from "@react-navigation/native";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -7,16 +7,22 @@ import { useColorScheme, View } from "react-native";
 import DropdownAlert from "react-native-dropdownalert";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import { StyleSheet, UnistylesRuntime } from "react-native-unistyles";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import InitialRoute from "./InitialRoute";
 
 function InitialLayout() {
   const scheme = useColorScheme();
   const isDark = scheme === "dark";
+  const {theme} = useSelector((state: RootState) => state.theme);
+  const dispatch = useDispatch();
   useEffect(() => {
-    UnistylesRuntime.setTheme(isDark ? "dark" : "light");
+    dispatch(setTheme(isDark ? "dark" : "light"));
   }, [isDark]);
+  console.log({theme})
+  useEffect(() => {
+    UnistylesRuntime.setTheme(theme);
+  }, [theme]);
   return (
     <QueryClientProvider client={queryClient}>
       <KeyboardProvider>
@@ -58,5 +64,8 @@ const styles = StyleSheet.create((theme) => ({
   headerStyle:{
     backgroundColor:theme.colors.white,
     width:"100%",
+  },
+  themeBackground:{
+    backgroundColor:theme.colors.white,
   }
 }));
