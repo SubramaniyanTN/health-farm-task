@@ -18,6 +18,15 @@ export default function DashboardLayout() {
           headerShown: false,
         }}
       />
+      <Stack.Screen name="theme"
+        options={{
+          presentation: 'formSheet',
+          sheetGrabberVisible: true,
+          sheetAllowedDetents:[ 0.35],
+          contentStyle: styles.headerStyle,
+          headerShown: false,
+        }}
+      />
       <Stack.Screen name="profile"
         options={{
           headerShown: false,
