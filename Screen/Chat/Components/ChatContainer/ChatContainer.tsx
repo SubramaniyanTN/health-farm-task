@@ -32,7 +32,7 @@ function ChatContainer(props: Message) {
             end={{ x: 1, y: 1 }}
             style={[styles.bubble, isSender && styles.customerBubble]}
           >
-            <ThemedText entering={undefined} >{props.content}</ThemedText>
+            <ThemedText style={styles.contentText} entering={undefined} >{props.content}</ThemedText>
 
             <View style={styles.dateTextContainer}>
               <ThemedText entering={undefined} style={styles.dateText}>
@@ -65,7 +65,9 @@ const styles = StyleSheet.create((theme) => ({
     width: "100%",
     marginVertical: 10,
   },
-
+  contentText: {
+    color: "#33384B",
+  },
   rowLeft: {
     justifyContent: "flex-start",
   },
@@ -92,7 +94,7 @@ const styles = StyleSheet.create((theme) => ({
 
   dateText: {
     fontSize: 10,
-    color: theme.colors.textPrimary,
+    color: "#33384B",
   },
 
   replyActionContainer: {

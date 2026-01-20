@@ -1,4 +1,4 @@
-import { persistor, store, useAppSelector } from "@/redux";
+import { persistor, store } from "@/redux";
 import { alertService, queryClient } from "@/src";
 import { DarkTheme, ThemeProvider } from "@react-navigation/native";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -9,7 +9,6 @@ import { KeyboardProvider } from "react-native-keyboard-controller";
 import { StyleSheet, UnistylesRuntime } from "react-native-unistyles";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
-import ThemedText from "../ThemedText/ThemedText";
 import InitialRoute from "./InitialRoute";
 
 function InitialLayout() {
@@ -18,14 +17,6 @@ function InitialLayout() {
   useEffect(() => {
     UnistylesRuntime.setTheme(isDark ? "dark" : "light");
   }, [isDark]);
-  const Header = () => {
-    return (
-      <View style={styles.headerStyle}>
-      <ThemedText label="otpverify.header" variant="base" tone="normal" />
-      </View>
-    )
-  }
-  const {hasSeenWelcome}=useAppSelector((state)=>state.hasSeenWelcome)
   return (
     <QueryClientProvider client={queryClient}>
       <KeyboardProvider>
@@ -36,6 +27,7 @@ function InitialLayout() {
               ...DarkTheme.colors,
               background: "transparent",
             },
+            dark:isDark,
           }}
         >
           <View style={styles.container}>
@@ -66,6 +58,5 @@ const styles = StyleSheet.create((theme) => ({
   headerStyle:{
     backgroundColor:theme.colors.white,
     width:"100%",
-    padding:10,
   }
 }));

@@ -45,10 +45,10 @@ const styles = StyleSheet.create((theme)=>( {
     container: {
       flex: 1,
       padding: 10,
+      paddingTop:20,
       backgroundColor:theme.colors.white,
-      justifyContent:"space-between",
-      gap:20
-
+      justifyContent:"flex-start",
+      gap:10
     },
     nameContainer:{
         display:"flex",
@@ -59,7 +59,6 @@ const styles = StyleSheet.create((theme)=>( {
         flexDirection:"row",
         alignItems:"center",
         gap:10,
-        flex:1
     }
   }));
   
