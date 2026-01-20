@@ -1,0 +1,13 @@
+diff --git a/node_modules/@barehera/query-key-factory/dist/index.d.ts b/node_modules/@barehera/query-key-factory/dist/index.d.ts
+index efc6eda..281489f 100644
+--- a/node_modules/@barehera/query-key-factory/dist/index.d.ts
++++ b/node_modules/@barehera/query-key-factory/dist/index.d.ts
+@@ -2,7 +2,7 @@ import { queryOptions } from '@tanstack/react-query';
+ 
+ type QueryConfig<T = unknown> = {
+   queryKey: readonly unknown[] | null;
+-  queryFn: () => T | Promise<T>;
++  queryFn: (...args: any[]) => T | Promise<T>;
+   contextQueries?: Record<string, QueryConfig>;
+ };
+ 

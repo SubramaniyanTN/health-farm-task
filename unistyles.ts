@@ -1,6 +1,6 @@
 import { darkThemeColors, lightThemeColors } from '@/colors/unistylesColor'
 import { StyleSheet } from 'react-native-unistyles'
-import { shadows } from './colors/shadows'
+import { darkShadows, shadows } from './colors/shadows'
 const lightTheme = {
     colors: lightThemeColors,
     shadows,
@@ -9,7 +9,7 @@ const lightTheme = {
 
 const darkTheme = {
     colors: darkThemeColors,
-    shadows,
+    shadows: darkShadows,
     gap: (v: number) => v * 8,
 }
 
