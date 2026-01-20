@@ -104,9 +104,9 @@ export const styles=StyleSheet.create((theme)=>({
     borderWidth:1,
   },
   input:{
-  flex:1,
-  height:"100%",
   width:"100%",
+  minHeight:40,
+  textAlignVertical:"center",
   color:theme.colors.textPrimary,
 
   },
