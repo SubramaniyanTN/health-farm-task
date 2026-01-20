@@ -1,4 +1,5 @@
 import { Header } from '@/components'
+import i18n from '@/locale'
 import {
   setAuthData,
   setUser,
@@ -22,6 +23,10 @@ export default function InitialRoute() {
   const dispatch = useAppDispatch()
   const { accessToken } = useAppSelector((s) => s.auth)
   const { hasSeenWelcome } = useAppSelector((s) => s.hasSeenWelcome)
+  const { language } = useAppSelector((s) => s.theme)
+  useEffect(() => {
+    i18n.changeLanguage(language)
+  }, [language])
   useEffect(() => {
     const { data: sub } = supabase.auth.onAuthStateChange(
       (event, session) => {

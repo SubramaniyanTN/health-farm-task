@@ -19,7 +19,6 @@ function InitialLayout() {
   useEffect(() => {
     dispatch(setTheme(isDark ? "dark" : "light"));
   }, [isDark]);
-  console.log({theme})
   useEffect(() => {
     UnistylesRuntime.setTheme(theme);
   }, [theme]);
