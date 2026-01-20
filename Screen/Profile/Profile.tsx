@@ -71,9 +71,8 @@ const styles = StyleSheet.create((theme) => ({
   linkContainer: {
     width: "100%",
     display: "flex",
-    flexDirection: "row",
+    flexWrap:"wrap",
     alignItems: "flex-end",
-    justifyContent: "center",
     textAlignVertical: "bottom",
     gap: 10,
     paddingVertical: 10

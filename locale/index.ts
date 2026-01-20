@@ -2,12 +2,12 @@ import * as Localization from 'expo-localization';
 import i18n from 'i18next';
 import { initReactI18next, useTranslation } from 'react-i18next';
 import en from './translations/en.json' with { type: 'json' };
-import hi from './translations/hi.json' with { type: 'json' };
+import tn from './translations/tn.json' with { type: 'json' };
 import { NestedKeyOf } from './types';
 
 export const languages = {
   en: { translation: en },
-  hi: { translation: hi },
+  tn: { translation: tn },
 };
 
 // Get device locale from expo-localization

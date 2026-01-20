@@ -15,7 +15,7 @@ const ChannelHeader = () => {
     const {theme} = useAppSelector((state)=>state.theme);
     return (
         <View style={styles.headerContainer}>
-        <ThemedText variant="title">Channels</ThemedText>
+        <ThemedText variant="title" label="dashboard.channels" />
        <View style={styles.rightContainer} >
         <Pressable onPress={handleThemeNavigation} style={styles.svgContainer} >
         <ThemedSVG width={30} height={30} variants={theme === "dark" ? "dark-mode" : "light-mode"} fill={"white"} />

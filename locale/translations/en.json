@@ -2,12 +2,16 @@
   "otpverify":{
     "header":"OTP Verify"
   },
+  "dashboard":{
+    "channels":"Channels"
+  },
   "signup":{
     "sign-up":"Sign up",
     "fullName":{
       "label":"Full Name",
       "placeholder":"Enter your full name"
     },
+   
     "email":{
       "label":"Email",
       "placeholder":"Enter your email"
@@ -73,7 +77,10 @@
   "file-upload":"File Upload",
   "do-you-have-file-to-upload":"Do you have file to upload?",
   "click-here":"Click here",
-  "theme-switch":"Theme Switch"
+  "theme-switch":"Theme Switch",
+  "select-your-language":"Select your language",
+  "english":"English",
+  "tamil":"Tamil"
 }
 
 
