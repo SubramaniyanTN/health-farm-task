@@ -2,14 +2,26 @@ import { useGetChannels } from "@/api";
 import { Channel } from "@/api/chat/types";
 import { Avatar, ThemedText } from "@/components";
 import AnimatedFlatList from "@/components/AnimatedFlatlist/AnimatedFlatlist";
+import { supabase } from "@/src";
+import { useQueryClient } from "@tanstack/react-query";
 import { router } from "expo-router";
+import { useEffect } from "react";
 import { Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
+import { subscribeToChannels } from "../Chat/Components";
 import { ChannelHeader, ChannelSkeleton } from "./components";
 
 export default function Dashboard() {
     const { data, isLoading,refetch,isError,error } = useGetChannels()
+    const queryClient = useQueryClient();
+    useEffect(() => {
+        const channel = subscribeToChannels(queryClient);
+    
+        return () => {
+          supabase.removeChannel(channel);
+        };
+      }, []);
     const RenderItem = ({ item }: { item: Channel }) => {
         const handleNavigation = () => {
             router.push(`/dashboard/${item.id}?title=${item.name}`)

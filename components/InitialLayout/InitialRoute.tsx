@@ -87,6 +87,5 @@ const styles = StyleSheet.create((theme) => ({
   headerStyle: {
     backgroundColor: theme.colors.white,
     width: '100%',
-    padding: 10,
   },
 }))

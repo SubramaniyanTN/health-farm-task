@@ -12,10 +12,10 @@ export default function DashboardLayout() {
         options={{
           presentation: 'formSheet',
           sheetGrabberVisible: true,
-          sheetAllowedDetents: [0.25],
+          sheetAllowedDetents: [0.35],
           contentStyle: styles.headerStyle,
           header: () => <Header label="logout" />,
-          headerShown: true,
+          headerShown: false,
         }}
       />
       <Stack.Screen name="profile"
@@ -45,7 +45,7 @@ const styles = StyleSheet.create((theme) => ({
   headerStyle: {
     backgroundColor: theme.colors.white,
     width: "100%",
-    padding: 10,
+    height:"100%"
   }
 }))
 

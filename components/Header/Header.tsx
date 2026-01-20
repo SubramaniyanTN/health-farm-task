@@ -33,7 +33,6 @@ export default Header
 const styles = StyleSheet.create((theme) => ({
   headerStyle: {
     width: '100%',
-    padding: 10,
     display:"flex",
     flexDirection:"row",
     alignItems:"center",
