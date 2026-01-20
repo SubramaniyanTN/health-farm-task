@@ -12,6 +12,7 @@ export const lightThemeColors = {
   danger: "#ED5E5E",
   primary: "#2E6FF3",
   skeletonBackground: "#9CA3AF",
+  themeActiveStrokeColor: "#F1F4F6",
 };
 
 export const darkThemeColors = {
@@ -26,6 +27,7 @@ export const darkThemeColors = {
   danger: "#ED5E5E",
   primary: "#2E6FF3",
   skeletonBackground: "#9CA3AF",
+  themeActiveStrokeColor: "#F1F4F6",
 };
 
 export type ColorName = keyof typeof lightThemeColors;

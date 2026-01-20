@@ -1,5 +1,7 @@
 export { default as Add } from './add.svg';
 export { default as ChevronLeft } from './chevron-left.svg';
+export { default as DarkMode } from './dark_mode.svg';
+export { default as LightMode } from './light_mode.svg';
 export { default as Logo } from './logo.svg';
 export { default as UserRounded } from './User-Rounded.svg';
 export { default as EyeOpen } from './visibility.svg';

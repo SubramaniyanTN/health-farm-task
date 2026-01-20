@@ -5,6 +5,7 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
+import { Theme } from "./components";
 
 export default function Profile() {
     const { user } = useAppSelector((state) => state.auth);
@@ -26,6 +27,7 @@ export default function Profile() {
             <ThemedText>{user?.email}</ThemedText>
             </View>
             </View>
+            <Theme />
             <ScalableButton
               onPress={handleNavigate}
               label={"file-upload"}
