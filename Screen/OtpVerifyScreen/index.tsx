@@ -29,7 +29,7 @@ export default function OtpVerifyScreen() {
     return (
         <AnimatedView style={styles.container}>
  <KeyboardAwareScrollView
- style={{flex:1}}
+ style={{flex:1,padding:10}}
         contentContainerStyle={styles.contentContainer}
       >
           <FormProvider {...methods}>
@@ -51,7 +51,6 @@ const styles = StyleSheet.create((theme)=>( {
     container: {
       flex: 1,
       backgroundColor:theme.colors.white,
-      margin:10
     },
     contentContainer: {
       flex: 1, // ✅ THIS enables scrolling

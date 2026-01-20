@@ -1,3 +1,4 @@
+import { useCustomTranslation } from "@/locale";
 import { useState } from "react";
 import { useController } from "react-hook-form";
 import { Pressable, Text, View } from "react-native";
@@ -25,9 +26,10 @@ export default function CustomCountrySelect({ name }: CustomCountryPickProps) {
   const handleShowPicker = () => {
     setShowPicker(true);
   };
+  const translation = useCustomTranslation();
   return (
     <View style={{ gap: 5 }}>
-      <Text style={styles.label}>Select a country</Text>
+      <Text style={styles.label}>{translation("signup.country.label")}</Text>
       <View
         style={[
           styles.container,
@@ -35,7 +37,7 @@ export default function CustomCountrySelect({ name }: CustomCountryPickProps) {
         ]}
       >
         <Pressable style={[styles.inputContainer,]} onPress={handleShowPicker}>
-          <Text style={[styles.label, isError && styles.errorText]} >{value ? value : "Please select a country"}</Text>
+          <Text style={[styles.label, isError && styles.errorText]} >{value ? value : translation("signup.country.placeholder")}</Text>
         </Pressable>
       </View>
       <CountrySelect
