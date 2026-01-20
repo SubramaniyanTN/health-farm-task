@@ -84,7 +84,12 @@
   "no-data-found":"No data found",
   "no-results-found":"No results found",
   "no-data-to-show":"It looks like there are currently no data to display.",
-  "data":"Data"
+  "data":"Data",
+  "search":"Search",
+  "enter-search-term":"Enter text to search",
+  "name":"Name",
+  "campaign":"Campaign",
+  "ad_name":"Ad Name"
 }
 
 

@@ -1,13 +1,28 @@
 import { useGetLeads } from "@/api";
-import { AnimatedFlatlist, ThemedText } from "@/components";
+import { AnimatedFlatlist, CustomInput, ThemedText } from "@/components";
+import { useCustomTranslation } from "@/locale";
+import { searchValidation, SearchValidationType } from "@/Schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormProvider, useForm } from "react-hook-form";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
 
 export default function Data() {
-    const {data, isError, error, isLoading, refetch}=useGetLeads()
+    const methods = useForm<SearchValidationType>({
+        resolver: zodResolver(searchValidation),
+        defaultValues: {
+            search: "",
+        },
+        mode: "onChange",
+    });
+    const search = methods.watch("search");
+    const {data, isError, error, isLoading, refetch}=useGetLeads({searchTerm:search})
+    const translation = useCustomTranslation();
     return (
+        <FormProvider {...methods}>
         <SafeAreaView style={styles.container}>
+            <CustomInput name="search" placeholder="enter-search-term" />
             <AnimatedFlatlist
                 data={data}
                 isError={isError}
@@ -16,7 +31,9 @@ export default function Data() {
                 isLoading={isLoading}
                 renderItem={({item})=>(
                     <View style={styles.itemContainer}>
-                        <ThemedText>{item.name}</ThemedText>
+                        <ThemedText>{translation("name")}: {item.name}</ThemedText>
+                        <ThemedText>{translation("campaign")}: {item.campaign}</ThemedText>
+                        <ThemedText>{translation("ad_name")}: {item.ad_name}</ThemedText>   
                     </View>
                 )}
                 keyExtractor={(item) => item.id}
@@ -25,6 +42,7 @@ export default function Data() {
                 entering={undefined}
             />
         </SafeAreaView>
+        </FormProvider>
     )
 }
 
@@ -36,9 +54,9 @@ const styles = StyleSheet.create((theme) => ({
     },
     itemContainer: {
         display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
+        flexDirection: "column",
         gap: 10,
+        ...theme.shadows.card,
     },
     list:{
         paddingTop:10

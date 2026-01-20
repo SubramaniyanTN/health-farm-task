@@ -1,7 +1,7 @@
 import { ChannelValidationType } from "@/Schema"
 import { alertService, LeadRow, supabase, uploadLeads } from "@/src"
 import { FunctionsHttpError } from "@supabase/supabase-js"
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { router } from "expo-router"
 import { DropdownAlertType } from "react-native-dropdownalert"
 import { queries } from "../queries"
@@ -105,10 +105,15 @@ export const useUploadLeads =()=>{
   })
 }
 
-export const useGetLeads =()=>{
-  return useQuery<Lead[]>({
-    ...queries.chat.leads()
+export const useGetLeads =({searchTerm}:{searchTerm?:string})=>{
+  return useInfiniteQuery<Lead[],any,Lead[]>({
+    ...queries.chat.leads({searchTerm}),
+    getNextPageParam: (lastPage, pages) => {
+      return lastPage.length > 0 ? pages.length + 1 : undefined;
+    },
+    initialPageParam: 1,
+    select: (data) => {
+      return data.pages.flatMap((page) => page);
+    },
   })
 }
-
-
