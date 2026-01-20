@@ -6,10 +6,12 @@ import { PersistConfig, persistReducer, persistStore } from 'redux-persist';
 import AuthSlice from './auth/auth';
 import HasSeenWelcomeSlice from './hasSeenWelcome/hasSeenWelcome';
 import { reduxStorage } from './mmkvStorage';
+import ThemeSlice from './theme/theme';
 
 const reducers = combineReducers({
   auth: AuthSlice,
   hasSeenWelcome: HasSeenWelcomeSlice,
+  theme: ThemeSlice,
 });
 
 const rootReducer = (
