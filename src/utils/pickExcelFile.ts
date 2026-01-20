@@ -2,6 +2,8 @@ import * as DocumentPicker from "expo-document-picker";
 import * as FileSystem from "expo-file-system/legacy";
 import * as XLSX from "xlsx";
 
+const MAX_LEADS = 500;
+
 export async function pickExcelFile() {
   const result = await DocumentPicker.getDocumentAsync({
     type: [
@@ -87,49 +89,57 @@ export async function readExcelFile(uri: string) {
   
   
   export function prepareLeads(rows: any[]): LeadRow[] {
-    return rows.slice(0, 10).map((row) => ({
-      id: String(row.Id ?? ""),
-      name: String(row.Name ?? ""),
-      lead_id: String(row.lead_id ?? ""),
-      campaign: String(row.Campaign ?? ""),
-      time_utc: row.TimeUtc ? String(row.TimeUtc) : undefined,
-      date_char: row.DateChar ? String(row.DateChar) : undefined,
-      ad_id: row.ad_id ? String(row.ad_id) : undefined,
+    const result: LeadRow[] = [];
   
-      // ✅ FIX: campaign_id is TEXT, not date
-      campaign_id: row.campaign_id ? String(row.campaign_id) : undefined,
+    for (const row of rows) {
+      result.push({
+        id: String(row.Id ?? ""),
+        name: String(row.Name ?? ""),
+        lead_id: String(row.lead_id ?? ""),
+        campaign: String(row.Campaign ?? ""),
+        time_utc: row.TimeUtc ? String(row.TimeUtc) : undefined,
+        date_char: row.DateChar ? String(row.DateChar) : undefined,
+        ad_id: row.ad_id ? String(row.ad_id) : undefined,
+        campaign_id: row.campaign_id ? String(row.campaign_id) : undefined,
+        form_id: row.form_id ? String(row.form_id) : undefined,
+        page_id: row.page_id ? String(row.page_id) : undefined,
+        ad_name: row.ad_name ? String(row.ad_name) : undefined,
+        created_time: safeToISOString(row.created_time),
+      });
   
-      form_id: row.form_id ? String(row.form_id) : undefined,
-      page_id: row.page_id ? String(row.page_id) : undefined,
-      ad_name: row.ad_name ? String(row.ad_name) : undefined,
+      // 🔒 HARD STOP
+      if (result.length === MAX_LEADS) break;
+    }
   
-      // ✅ FIX: SAFE DATE CONVERSION
-      created_time: safeToISOString(row.created_time),
-    }));
+    return result;
   }
   
   
 
   import { supabase } from "@/src";
-
   export async function uploadLeads(leads: LeadRow[]) {
-    // 🛑 Safety check
-    if (leads.length > 10) {
-      throw new Error("Attempted to upload more than 10 leads");
-    }
-  
-    // 🧪 Debug – verify payload keys
-    console.log("Uploading leads:", leads);
-  
-    const { data, error } = await supabase
-      .from("leads")
-      .insert(leads); // 👈 ONE CALL, ONE REQUEST
+    console.log({session:JSON.stringify( await supabase.auth.getSession())})
+    const { data, error } = await supabase.functions.invoke("upload-leads", {
+      body: {
+        leads: leads.slice(0, MAX_LEADS),
+      },
+    });
   
     if (error) {
-      console.error("Upload error:", error);
+      console.error("Invoke error", error);
       throw error;
     }
-  
-    return data;
-  }
+    // ✅ FIX: parse JSON string
+  const parsed =
+  typeof data === "string" ? JSON.parse(data) : data;
 
+console.log("Parsed response", parsed);
+
+if (!parsed?.success) {
+  throw new Error("Upload failed");
+}
+
+return parsed;
+
+  }
+  

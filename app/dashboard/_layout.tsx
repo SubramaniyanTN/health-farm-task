@@ -10,11 +10,12 @@ export default function DashboardLayout() {
       <Stack.Screen name="data" />
       <Stack.Screen name="createchannel"
         options={{
-          headerShown: false,
           presentation: 'formSheet',
           sheetGrabberVisible: true,
           sheetAllowedDetents: [0.25],
           contentStyle: styles.headerStyle,
+          header: () => <Header label="logout" />,
+          headerShown: true,
         }}
       />
       <Stack.Screen name="profile"
