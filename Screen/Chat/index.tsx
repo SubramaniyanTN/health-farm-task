@@ -3,6 +3,7 @@ import { useGetMessages } from "@/api";
 import { AnimatedFlatlist } from "@/components";
 import { useGlobalSearchParams } from "expo-router";
 import { View } from "react-native";
+import { KeyboardAvoidingView } from "react-native-keyboard-controller";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
 import { ChatContainer, ChatSkeleton, Footer, useMessageRealtime } from "./Components";
@@ -12,6 +13,11 @@ export default function Chat() {
     const { data, isLoading ,isError,error,refetch} = useGetMessages(id as string)
     useMessageRealtime(id);
     return (
+        <KeyboardAvoidingView
+        behavior={"padding"}
+        keyboardVerticalOffset={0}
+        style={styles.content}
+      >
         <View style={[styles.container, { paddingBottom: bottom }]}>
             <View style={styles.listContainer} >
             <AnimatedFlatlist
@@ -32,6 +38,7 @@ export default function Chat() {
             </View>
             <Footer />
         </View>
+        </KeyboardAvoidingView>
     )
 }
 const styles = StyleSheet.create((theme) => ({
@@ -39,6 +46,9 @@ const styles = StyleSheet.create((theme) => ({
         flex: 1,
         paddingHorizontal: 10,
     },
+    content: {
+        flex: 1, // ✅ THIS enables scrolling
+      },
     list: {
         flex: 1,
     },
