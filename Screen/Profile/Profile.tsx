@@ -1,6 +1,7 @@
 import { AnimatedView, ProfileAvatar, ScalableButton, ThemedText } from "@/components";
 import { useAppSelector } from "@/redux";
 import { logout } from "@/src";
+import { router } from "expo-router";
 import { useState } from "react";
 import { View } from "react-native";
 import { StyleSheet } from "react-native-unistyles";
@@ -13,6 +14,9 @@ export default function Profile() {
         await logout();
         setIsDisabled(false);
     }
+    const handleNavigate = () => {
+      router.replace("/dashboard/data");
+    }
     return (
         <AnimatedView style={styles.container}>
             <View style={styles.header} >
@@ -22,6 +26,10 @@ export default function Profile() {
             <ThemedText>{user?.email}</ThemedText>
             </View>
             </View>
+            <ScalableButton
+              onPress={handleNavigate}
+              label={"file-upload"}
+            />
             <ScalableButton
               disabled={isDisabled}
               isPending={isDisabled}

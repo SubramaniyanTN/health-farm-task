@@ -1,10 +1,10 @@
 import { ChannelValidationType } from "@/Schema"
-import { alertService, supabase } from "@/src"
+import { alertService, LeadRow, supabase, uploadLeads } from "@/src"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { router } from "expo-router"
 import { DropdownAlertType } from "react-native-dropdownalert"
 import { queries } from "../queries"
-import { Channel, Message, SendMessageInput } from "./types"
+import { Channel, Lead, Message, SendMessageInput } from "./types"
 
 export const useGetChannels =()=>{
     return useQuery<Channel[]>({
@@ -68,6 +68,41 @@ export const useCreateChannel=()=>{
       queryClient.invalidateQueries({ queryKey: queries.chat._def });
       router.back()
     },
+  })
+}
+
+export const useUploadLeads =()=>{
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: async (leads:LeadRow[]) => {
+      return await uploadLeads(leads);
+    },
+    onSuccess: (data,variables) => {
+      alertService.alert?.({
+        type:DropdownAlertType.Success,
+        title:"Success",
+        message:"Leads uploaded successfully",
+        interval:1000
+      });
+      console.log("Success data",{data,});
+      queryClient.invalidateQueries({ queryKey: queries.chat.leads._def});
+      router.navigate("/dashboard/data");
+    },
+    onError: (error,variables) => {
+      alertService.alert?.({
+        type:DropdownAlertType.Error,
+        title:"Error",
+        message:"Failed to upload leads",
+        interval:1000
+      });
+      console.log("Error data",{error});
+    }
+  })
+}
+
+export const useGetLeads =()=>{
+  return useQuery<Lead[]>({
+    ...queries.chat.leads()
   })
 }
 

@@ -20,3 +20,20 @@ export type Message = {
     senderId: string;
     content: string;
   };
+
+  export type Lead = {
+    id: string;
+    name: string;
+    time_utc: string | null;
+    date_char: string | null;
+    campaign: string | null;
+    ad_id: string | null;
+    campaign_id: string | null;
+    lead_id: string;
+    form_id: string | null;
+    page_id: string | null;
+    created_time: string | null;
+    ad_name: string | null;
+    inserted_at: string;
+  };
+  
