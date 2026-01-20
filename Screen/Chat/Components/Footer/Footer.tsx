@@ -40,7 +40,7 @@ export default function Footer() {
     return (
         <FormProvider {...methods} >
             <View style={styles.footer} >
-            <CustomInput wrapperStyle={styles.input} name="message" placeholder="chat.message" />
+            <CustomInput wrapperStyle={styles.inputWrapper} style={styles.input} name="message" placeholder="chat.message" />
             <ScalableButton style={styles.button} label="chat.send" onPress={methods.handleSubmit(onSubmit)} disabled={sendMessage.isPending} isPending={sendMessage.isPending} />
             </View>
         </FormProvider>
@@ -57,8 +57,12 @@ const styles =StyleSheet.create((theme)=>({
         justifyContent:"space-between",
         gap:10
     },
-    input:{
+    inputWrapper:{
         flexGrow:1,
-        maxWidth:"70%"
+        maxWidth:"70%",
+    },
+    input:{
+        width:"100%",
+        height:"100%",
     }
 }))

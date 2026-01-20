@@ -35,6 +35,7 @@ export default function SignIn(){
             <ScalableButton
             onPress={methods.handleSubmit(handleSubmit)}
             label={"Submit"}
+            isPending={signIn.isPending}
             disabled={signIn.isPending}
           />
           </FormProvider>

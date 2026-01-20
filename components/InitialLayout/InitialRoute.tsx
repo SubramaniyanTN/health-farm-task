@@ -1,12 +1,12 @@
 import { Header } from '@/components'
 import {
-  logout,
   setAuthData,
   setUser,
+  store,
   useAppDispatch,
   useAppSelector
 } from '@/redux'
-import { supabase } from '@/src'
+import { queryClient, supabase } from '@/src'
 import { Stack } from 'expo-router'
 import { useEffect } from 'react'
 import { AppState } from 'react-native'
@@ -42,7 +42,8 @@ export default function InitialRoute() {
           )
         }
         if (event === 'SIGNED_OUT') {
-          dispatch(logout())
+          store.dispatch({type:"RESET_ALL"});
+          queryClient.clear();
         }
 
         if (event === 'USER_UPDATED') {
