@@ -1,5 +1,6 @@
 import { ChannelValidationType } from "@/Schema"
 import { alertService, LeadRow, supabase, uploadLeads } from "@/src"
+import { FunctionsHttpError } from "@supabase/supabase-js"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { router } from "expo-router"
 import { DropdownAlertType } from "react-native-dropdownalert"
@@ -88,7 +89,11 @@ export const useUploadLeads =()=>{
       queryClient.invalidateQueries({ queryKey: queries.chat.leads._def});
       router.navigate("/dashboard/data");
     },
-    onError: (error,variables) => {
+    onError: async(error,variables) => {
+      if (error && error instanceof FunctionsHttpError) {
+        const errorMessage = await error.context.json()
+        console.log('Function returned an error', errorMessage)
+      }
       alertService.alert?.({
         type:DropdownAlertType.Error,
         title:"Error",
