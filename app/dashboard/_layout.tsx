@@ -10,6 +10,7 @@ export default function DashboardLayout() {
       <Stack.Screen name="data" />
       <Stack.Screen name="createchannel"
         options={{
+          headerShown: false,
           presentation: 'formSheet',
           sheetGrabberVisible: true,
           sheetAllowedDetents: [0.25],
@@ -18,6 +19,7 @@ export default function DashboardLayout() {
       />
       <Stack.Screen name="profile"
         options={{
+          headerShown: false,
           presentation: 'formSheet',
           sheetGrabberVisible: true,
           sheetAllowedDetents: [0.35],

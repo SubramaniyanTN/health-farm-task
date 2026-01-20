@@ -18,7 +18,7 @@ export default function FileUpload() {
         if (file) {
             const leads = await readExcelFile(file.uri);
             const preparedLeads = prepareLeads(leads);
-            uploadLeads.mutate(preparedLeads);
+            await uploadLeads.mutateAsync(preparedLeads);
         }
         } catch (error) {
             console.log("Error here",{error});
