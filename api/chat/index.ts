@@ -1,6 +1,5 @@
 import { ChannelValidationType } from "@/Schema"
-import { alertService, LeadRow, supabase, uploadLeads } from "@/src"
-import { FunctionsHttpError } from "@supabase/supabase-js"
+import { alertService, supabase, triggerLeadsImport } from "@/src"
 import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { router } from "expo-router"
 import { DropdownAlertType } from "react-native-dropdownalert"
@@ -72,38 +71,34 @@ export const useCreateChannel=()=>{
   })
 }
 
-export const useUploadLeads =()=>{
+export const useUploadLeads = () => {
   const queryClient = useQueryClient();
+
   return useMutation({
-    mutationFn: async (leads:LeadRow[]) => {
-      return await uploadLeads(leads);
-    },
-    onSuccess: (data,variables) => {
+    mutationFn: triggerLeadsImport,
+
+    onSuccess: () => {
       alertService.alert?.({
-        type:DropdownAlertType.Success,
-        title:"Success",
-        message:"Leads uploaded successfully",
-        interval:1000
+        type: DropdownAlertType.Success,
+        title: "Success",
+        message: "Leads uploaded successfully",
       });
-      console.log("Success data",{data,});
-      queryClient.invalidateQueries({ queryKey: queries.chat.leads._def});
-      router.navigate("/dashboard/data");
+
+      queryClient.invalidateQueries();
+      router.push("/dashboard/data");
     },
-    onError: async(error,variables) => {
-      if (error && error instanceof FunctionsHttpError) {
-        const errorMessage = await error.context.json()
-        console.log('Function returned an error', errorMessage)
-      }
+
+    onError: (error) => {
+      console.error(error);
       alertService.alert?.({
-        type:DropdownAlertType.Error,
-        title:"Error",
-        message:"Failed to upload leads",
-        interval:1000
+        type: DropdownAlertType.Error,
+        title: "Error",
+        message: "Upload failed",
       });
-      console.log("Error data",{error});
-    }
-  })
-}
+    },
+  });
+};
+
 
 export const useGetLeads =({searchTerm}:{searchTerm?:string})=>{
   return useInfiniteQuery<Lead[],any,Lead[]>({
