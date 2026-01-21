@@ -32,7 +32,7 @@ export default function FileUpload() {
         console.log("✅ File uploaded to:", filePath);
     
         // 3️⃣ Trigger backend import
-       uploadLeads.mutate(filePath);
+       await uploadLeads.mutateAsync(filePath);
         console.log("Uploaded leads")
     
         alertService.alert?.({
