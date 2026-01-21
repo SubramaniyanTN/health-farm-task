@@ -10,7 +10,7 @@ export const subscribeToDatas = (queryClient: QueryClient) => {
       {
         event: "INSERT", // INSERT | UPDATE | DELETE
         schema: "public",
-        table: "channels",
+        table: "leads",
       },
       () => {
         // 🔄 Refresh channels list

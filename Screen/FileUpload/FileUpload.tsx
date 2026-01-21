@@ -42,7 +42,6 @@ export default function FileUpload() {
           interval: 1200,
         });
     
-        router.push("/dashboard/data");
       } catch (error) {
         console.error("❌ Upload failed", error);
     
@@ -53,6 +52,7 @@ export default function FileUpload() {
           interval: 1500,
         });
       } finally {
+        router.push("/dashboard/data");
         setIsLoading(false);
       }
     };
