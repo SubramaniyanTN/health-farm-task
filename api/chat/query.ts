@@ -16,7 +16,8 @@ export const chatKeys =createQueryKeys("chat",{
             const { data, error } = await supabase
             .from("channels")
             .select("*")
-            .order("created_at", { ascending: true });
+            .order("created_time", { ascending: false })
+            .order("id", { ascending: false }) 
             if (error) throw error;
             return data;
         },
@@ -37,12 +38,13 @@ export const chatKeys =createQueryKeys("chat",{
       leads:({searchTerm}:{searchTerm?:string})=>({
         queryKey:[ searchTerm],
         queryFn:async({pageParam=1})=>{
+          console.log("Page param....", pageParam)
           const page = Number(pageParam) || 1;   // page starts from 1
           const limit = Number(pageSize) || 10;
-          
+            
           const from = (page - 1) * limit;
           const to = from + limit - 1;
-          
+          console.log({from,to})
           let query = supabase
             .from("leads")
             .select("*", { count: "exact" })

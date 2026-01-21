@@ -31,6 +31,7 @@ export default function Data() {
     const search = methods.watch("search");
     const {data, isError, error, isLoading, refetch,fetchNextPage,hasNextPage}=useGetLeads({searchTerm:search})
     const translation = useCustomTranslation();
+    console.log("Data Length....", JSON.stringify(data?.length))
     return (
         <FormProvider {...methods}>
         <SafeAreaView style={styles.container}>
@@ -41,18 +42,19 @@ export default function Data() {
                 errorMessage={error?.message}
                 style={styles.list}
                 isLoading={isLoading}
-                renderItem={({item})=>(
+                renderItem={({item,index})=>(
                     <View style={styles.itemContainer}>
-                        <ThemedText>{translation("name")}: {item.name}</ThemedText>
+                        <ThemedText>{index+1}. {translation("name")}: {item.name}</ThemedText>
                         <ThemedText>{translation("campaign")}: {item.campaign}</ThemedText>
                         <ThemedText>{translation("ad_name")}: {item.ad_name}</ThemedText>   
                     </View>
                 )}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item, index) => index.toString()}
                 onRetry={refetch}
                 onEndReachedThreshold={0.5}
                 onEndReached={()=>{
-                    if(!isLoading && !isError && data && data.length > 10){
+                    if(hasNextPage && !isLoading && !isError && data && data.length && data.length > 0){
+                        console.log("Fetching next page....")
                         fetchNextPage()
                     }
                 }}
