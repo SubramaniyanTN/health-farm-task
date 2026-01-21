@@ -98,6 +98,7 @@ export const useGetLeads =({searchTerm}:{searchTerm?:string})=>{
     },
     initialPageParam: 1,
     select: (data) => {
+      console.log("Data....", JSON.stringify(data))
       return data.pages.flatMap((page) => page);
     },
   })
