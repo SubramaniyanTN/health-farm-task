@@ -2,11 +2,15 @@ import { useGetLeads } from "@/api";
 import { AnimatedFlatlist, CustomInput, ThemedText } from "@/components";
 import { useCustomTranslation } from "@/locale";
 import { searchValidation, SearchValidationType } from "@/Schema";
+import { supabase } from "@/src";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useQueryClient } from "@tanstack/react-query";
+import { useEffect } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { ActivityIndicator, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet } from "react-native-unistyles";
+import { subscribeToDatas } from "../Chat/Components";
 
 export default function Data() {
     const methods = useForm<SearchValidationType>({
@@ -16,6 +20,14 @@ export default function Data() {
         },
         mode: "onChange",
     });
+    const queryClient = useQueryClient();
+    useEffect(() => {
+        const channel = subscribeToDatas(queryClient);
+    
+        return () => {
+          supabase.removeChannel(channel);
+        };
+      }, []);
     const search = methods.watch("search");
     const {data, isError, error, isLoading, refetch,fetchNextPage,hasNextPage}=useGetLeads({searchTerm:search})
     const translation = useCustomTranslation();

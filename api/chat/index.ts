@@ -85,16 +85,6 @@ export const useUploadLeads = () => {
       });
 
       queryClient.invalidateQueries();
-      router.push("/dashboard/data");
-    },
-
-    onError: (error) => {
-      console.error(error);
-      alertService.alert?.({
-        type: DropdownAlertType.Error,
-        title: "Error",
-        message: "Upload failed",
-      });
     },
   });
 };
