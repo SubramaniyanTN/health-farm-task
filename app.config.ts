@@ -1,0 +1,61 @@
+import { ConfigContext, ExpoConfig } from "expo/config";
+
+const projectId = process.env.EXPO_PUBLIC_EAS_PROJECT_ID;
+
+export default ({ config }: ConfigContext): ExpoConfig => ({
+    ...config,
+    "name": "Integfarms My Health School",
+    "slug": "health-farm-task",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "healthfarmtask",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "ios": {
+        "supportsTablet": true,
+        "bundleIdentifier": "com.subramaniyanflozy.healthfarmtask"
+    },
+    "android": {
+        "adaptiveIcon": {
+            "backgroundColor": "#E6F4FE",
+            "foregroundImage": "./assets/images/icon.png",
+            "backgroundImage": "./assets/images/icon.png",
+            "monochromeImage": "./assets/images/icon.png"
+        },
+        "edgeToEdgeEnabled": true,
+        "predictiveBackGestureEnabled": false,
+        "package": "com.subramaniyanflozy.healthfarmtask"
+    },
+    "web": {
+        "output": "static",
+        "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+        "expo-router",
+        [
+            "expo-splash-screen",
+            {
+                "image": "./assets/images/splash-icon.png",
+                "imageWidth": 200,
+                "resizeMode": "contain",
+                "backgroundColor": "#ffffff",
+                "dark": {
+                    "backgroundColor": "#000000"
+                }
+            }
+        ],
+        "expo-font",
+        "expo-localization"
+    ],
+    "experiments": {
+        "typedRoutes": true,
+        "reactCompiler": true
+    },
+    "extra": {
+        "router": {},
+        "eas": {
+            "projectId":projectId
+        }
+    }
+})
