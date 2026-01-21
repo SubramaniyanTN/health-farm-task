@@ -16,8 +16,7 @@ export const chatKeys =createQueryKeys("chat",{
             const { data, error } = await supabase
             .from("channels")
             .select("*")
-            .order("created_time", { ascending: false })
-            .order("id", { ascending: false }) 
+            .order("created_at", { ascending: true });
             if (error) throw error;
             return data;
         },
@@ -48,7 +47,9 @@ export const chatKeys =createQueryKeys("chat",{
           let query = supabase
             .from("leads")
             .select("*", { count: "exact" })
-            .order("inserted_at", { ascending: false })
+            .order("inserted_at", { ascending: false, })
+            .order("created_time", { ascending: false })
+            .order("id", { ascending: false }) 
             .range(from, to);
           
             if (searchTerm?.trim()) {
